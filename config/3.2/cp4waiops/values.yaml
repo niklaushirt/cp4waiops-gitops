@@ -26,11 +26,11 @@ spec:
   ## If the storage provider for your deployment is Red Hat OpenShift Data Foundation, 
   ## previously called Red Hat OpenShift Container Storage, then set this to ocs-storagecluster-cephfs
   ##
-  storageClass: rook-cephfs
+  storageClass: ibmc-file-gold-gid
 
   ## If the storage provider for your deployment is Red Hat OpenShift Data Foundation, 
   ## previously called Red Hat OpenShift Container Storage, then set this to ocs-storagecluster-ceph-rbd
-  storageClassLargeBlock: rook-cephfs
+  storageClassLargeBlock: ibmc-file-gold-gid
 
   aiManager:
     ## Enable AI Manager

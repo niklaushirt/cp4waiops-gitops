@@ -33,6 +33,8 @@ spec:
   storageClassLargeBlock: ibmc-file-gold-gid
 
   aiManager:
+
+    installationName: ibm-aiops
     ## Enable AI Manager
     ##
     enabled: true

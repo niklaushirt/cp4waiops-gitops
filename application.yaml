@@ -39,6 +39,30 @@ spec:
       server: '*'
   sourceRepos:
     - '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: robot-shop
+  namespace: openshift-gitops
+spec:
+  destination:
+    name: ''
+    namespace: cp4waiops
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: addons/robotshop
+    repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+
 
 oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode
 

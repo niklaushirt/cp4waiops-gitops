@@ -100,6 +100,7 @@ echo "**************************************************************************
 echo "  📥 Create Namespace"
 oc create ns humio-logging
 oc create secret generic humio-license -n humio-logging --from-literal=data=$HUMIO_LICENSE
+oc create clusterrolebinding default-humio-admin --clusterrole=cluster-admin --serviceaccount=humio-logging:default
 
 echo "  "
 echo "***************************************************************************************************************************************************"

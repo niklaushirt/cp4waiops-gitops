@@ -36,17 +36,20 @@ spec:
                   break
                 fi
               done
-
-              oc patch deployment aiops-topology-merge -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-merge","readinessProbe":{"failureThreshold":12}}]}}}}'
+              oc patch deployment aiops-topology-merge -n {{.Values.spec.aiManager.namespace}} --type=json -p='[{"op": "remove", "path": "/metadata/ownerReferences"}]'
+              oc patch deployment aiops-topology-merge -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-merge","readinessProbe":{"failureThreshold":32}}]}}}}'
               oc patch deployment aiops-topology-merge -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-merge","readinessProbe":{"failureThreshold":62}}]}}}}'
 
-              oc patch deployment aiops-topology-search -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-search","readinessProbe":{"failureThreshold":12}}]}}}}'
+              oc patch deployment aiops-topology-search -n {{.Values.spec.aiManager.namespace}} --type=json -p='[{"op": "remove", "path": "/metadata/ownerReferences"}]'
+              oc patch deployment aiops-topology-search -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-search","readinessProbe":{"failureThreshold":32}}]}}}}'
               oc patch deployment aiops-topology-search -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-search","readinessProbe":{"failureThreshold":62}}]}}}}'
             
-              oc patch deployment aiops-topology-status -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-status","readinessProbe":{"failureThreshold":12}}]}}}}'
+              oc patch deployment aiops-topology-status -n {{.Values.spec.aiManager.namespace}} --type=json -p='[{"op": "remove", "path": "/metadata/ownerReferences"}]'
+              oc patch deployment aiops-topology-status -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-status","readinessProbe":{"failureThreshold":32}}]}}}}'
               oc patch deployment aiops-topology-status -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-status","readinessProbe":{"failureThreshold":62}}]}}}}'
 
-              oc patch deployment aiops-topology-layout -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-layout","readinessProbe":{"failureThreshold":12}}]}}}}'
+              oc patch deployment aiops-topology-layout -n {{.Values.spec.aiManager.namespace}} --type=json -p='[{"op": "remove", "path": "/metadata/ownerReferences"}]'
+              oc patch deployment aiops-topology-layout -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-layout","readinessProbe":{"failureThreshold":32}}]}}}}'
               oc patch deployment aiops-topology-layout -n {{.Values.spec.aiManager.namespace}} -p '{"spec":{"template":{"spec":{"containers":[{"name":"aiops-topology-layout","readinessProbe":{"failureThreshold":62}}]}}}}'
 
 

@@ -26,9 +26,9 @@ spec:
             - -c
             - |
               oc project {{.Values.spec.aiManager.namespace}}
-              oc create serviceaccount -n default demo-admin
-              oc create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=default:demo-admin
-              oc create clusterrolebinding ibm-zen-operator-serviceaccount --clusterrole=cluster-admin --serviceaccount=ibm-common-services:ibm-zen-operator-serviceaccount
+              oc create serviceaccount -n default demo-admin || true
+              oc create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=default:demo-admin || true
+              oc create clusterrolebinding ibm-zen-operator-serviceaccount --clusterrole=cluster-admin --serviceaccount=ibm-common-services:ibm-zen-operator-serviceaccount || true
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

@@ -46,7 +46,8 @@ spec:
               oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-lifecycle-eventprocessor-ep -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
               oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep ImagePull|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
 
- 
+              sleep 30s
+              
               while : ; do
                 READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics)
                 if [[ $READY  =~ 'ErrImagePull' ]]; then

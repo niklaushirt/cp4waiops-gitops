@@ -22,10 +22,10 @@ spec:
             - /bin/sh
             - -c
             - |
-              oc adm policy add-scc-to-user privileged -n robot-shop -z robot-shop
-              oc create clusterrolebinding default-robotinfo1-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:robot-shop
-              oc adm policy add-scc-to-user privileged -n robot-shop -z default                                
-              oc create clusterrolebinding default-robotinfo2-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:default
+              oc adm policy add-scc-to-user privileged -n robot-shop -z robot-shop || true
+              oc create clusterrolebinding default-robotinfo1-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:robot-shop || true
+              oc adm policy add-scc-to-user privileged -n robot-shop -z default                                 || true
+              oc create clusterrolebinding default-robotinfo2-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:default || true
 
              
       restartPolicy: Never

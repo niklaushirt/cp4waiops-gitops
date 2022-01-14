@@ -3,9 +3,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-wait-csv
+  name: cp4waiops-patch-topology
   annotations:
-    argocd.argoproj.io/sync-wave: "120"
+    argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,6 +25,8 @@ spec:
             - /bin/sh
             - -c
             - |
+              set -x
+
               while : ; do
                 READY=$(oc get csv  -n {{.Values.spec.aiManager.namespace}})
                 if [[ $READY  =~ 'Installing' ]]; then
@@ -34,5 +36,7 @@ spec:
                   break
                 fi
               done
+
+
       restartPolicy: Never
   backoffLimit: 4

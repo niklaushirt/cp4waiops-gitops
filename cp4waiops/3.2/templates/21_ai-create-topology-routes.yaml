@@ -1,0 +1,35 @@
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cp4waiops-create-topology-routes
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
+  namespace: {{.Values.spec.aiManager.namespace}}
+spec:
+  template:
+    spec:
+      containers:
+        - name: config
+          image: quay.io/openshift/origin-cli:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              oc create route passthrough topology-merge -n {{.Values.spec.aiManager.namespace}} --insecure-policy="Redirect" --service=aiops-topology-merge --port=https-merge-api
+              oc create route passthrough topology-rest -n {{.Values.spec.aiManager.namespace}} --insecure-policy="Redirect" --service=aiops-topology-rest-observer --port=https-rest-observer-admin
+              oc create route passthrough topology-manage -n {{.Values.spec.aiManager.namespace}} --service=evtmanager-topology-topology --port=https-topology-api
+
+
+
+      restartPolicy: Never
+  backoffLimit: 4

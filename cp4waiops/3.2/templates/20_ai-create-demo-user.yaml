@@ -3,9 +3,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-wait-csv
+  name: cp4waiops-create-demo-user
   annotations:
-    argocd.argoproj.io/sync-wave: "120"
+    argocd.argoproj.io/sync-wave: "200"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,14 +25,9 @@ spec:
             - /bin/sh
             - -c
             - |
-              while : ; do
-                READY=$(oc get csv  -n {{.Values.spec.aiManager.namespace}})
-                if [[ $READY  =~ 'Installing' ]]; then
-                  echo '"AIOps Operator" is not ready yet.'
-                  sleep 10s
-                else
-                  break
-                fi
-              done
+              oc project {{.Values.spec.aiManager.namespace}}
+              oc create serviceaccount -n default demo-admin
+              oc create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=default:demo-admin
+              oc create clusterrolebinding ibm-zen-operator-serviceaccount --clusterrole=cluster-admin --serviceaccount=ibm-common-services:ibm-zen-operator-serviceaccount
       restartPolicy: Never
   backoffLimit: 4

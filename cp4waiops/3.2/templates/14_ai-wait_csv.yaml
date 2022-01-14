@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-wait-csv
+  name: 14-cp4waiops-wait-csv
   annotations:
     argocd.argoproj.io/sync-wave: "120"
   namespace: {{.Values.spec.aiManager.namespace}}

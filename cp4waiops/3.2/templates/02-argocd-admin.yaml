@@ -1,4 +1,4 @@
-{{- if .Values.spec.aiManager.enabled }}
+
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -20,9 +20,6 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
-{{- end }}
-
-{{- if .Values.spec.eventManager.enabled }}
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -44,4 +41,3 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
-{{- end }}

@@ -5,7 +5,7 @@ metadata:
   name: 02-waitfor-ldap
   annotations:
     argocd.argoproj.io/sync-wave: "200"
-  namespace: {{.Values.spec.aiManager.namespace}}
+  namespace: {{.Values.aiManagerNamespace}}
 spec:
   template:
     spec:

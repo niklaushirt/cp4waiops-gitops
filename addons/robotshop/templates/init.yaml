@@ -1,11 +1,8 @@
-{{- if .Values.spec.aiManager.enabled }}
----
+
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: robot-shop-patch
-  annotations:
-    argocd.argoproj.io/sync-wave: "130"
   namespace: robot-shop
 spec:
   template:

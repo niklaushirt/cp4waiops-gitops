@@ -8,7 +8,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "100"
   labels:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
     app.kubernetes.io/managed-by: 'Helm'
@@ -22,7 +22,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "100"
   labels:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
     app.kubernetes.io/managed-by: 'Helm'
@@ -170,8 +170,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: 'humio-logging-humio-operator'
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
   labels:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
     app.kubernetes.io/managed-by: 'Helm'
@@ -180,8 +182,7 @@ subjects:
 - kind: ServiceAccount
   name: 'humio-operator'
   namespace: 'humio-logging'
-  annotations:
-    argocd.argoproj.io/sync-wave: "100"
+
 roleRef:
   kind: ClusterRole
   name: 'humio-logging-humio-operator'
@@ -196,7 +197,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "100"
   labels:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
 spec:
@@ -206,7 +207,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
 ---
@@ -222,7 +223,7 @@ metadata:
     productName: "humio-operator"
     productVersion: "0.13.0"
   labels:
-    app: 'humio-operator'
+    app: 'humio'
     app.kubernetes.io/name: 'humio-operator'
     app.kubernetes.io/instance: 'humio-operator'
     app.kubernetes.io/managed-by: 'Helm'
@@ -233,7 +234,7 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: 'humio-operator'
+      app: 'humio'
       app.kubernetes.io/name: 'humio-operator'
       app.kubernetes.io/instance: 'humio-operator'
   template:
@@ -243,7 +244,7 @@ spec:
         productName: "humio-operator"
         productVersion: "0.13.0"
       labels:
-        app: 'humio-operator'
+        app: 'humio'
         app.kubernetes.io/name: 'humio-operator'
         app.kubernetes.io/instance: 'humio-operator'
         app.kubernetes.io/managed-by: 'Helm'

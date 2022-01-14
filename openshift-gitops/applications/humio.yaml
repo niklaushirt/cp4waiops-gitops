@@ -1,0 +1,20 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: humio
+  namespace: openshift-gitops
+spec:
+  destination:
+    name: ''
+    namespace: humio-logging
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: addons/humio
+    repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false

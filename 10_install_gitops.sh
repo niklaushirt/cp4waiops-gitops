@@ -96,11 +96,11 @@ echo "**************************************************************************
 echo "  📥 Create Openshift GitOps Instance"
 oc create clusterrolebinding argocd-admin --clusterrole=cluster-admin --serviceaccount=argocd:argocd-argocd-application-controller
 oc create clusterrolebinding default-admin --clusterrole=cluster-admin --serviceaccount=cp4waiops:default
-oc apply -n  argocd -f ./argocd/install/2_argocd_install.yaml
+oc apply -n  openshift-gitops -f ./argocd/install/2_argocd_install.yaml
 
 
 while : ; do
-    READY=$(oc get ArgoCD -n argocd argocd -o jsonpath={.status}|| true) 
+    READY=$(oc get ArgoCD -n openshift-gitops openshift-gitops -o jsonpath={.status}|| true) 
     if [[ ! $READY  =~ '"server":"Running"' ]]; then
         echo "   🕦 Openshift GitOps Instance is not ready. Waiting for 10 seconds...." && sleep 10; 
     else
@@ -115,24 +115,12 @@ echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  🔐 Login Credentials"
 echo "  "
-echo "            🌏 URL:      https://$(oc get route -n  argocd  argocd-server -o jsonpath={.spec.host})"
+echo "            🌏 URL:      https://$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})"
 echo "  "
 echo "            🧔 User:       admin"
-echo "            🔐 Password:   "$(oc get secret -n argocd argocd-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+echo "            🔐 Password:   "$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
 echo "  "
 
 
 
 
-
-exit 1
-
-while : ; do
-ai_ir=$(oc get AIOpsAnalyticsOrchestrator aiops -n {{.Values.spec.aiManager.namespace}} -o jsonpath={.kind})
-if [[ $? != 0 ]]; then
-    echo '"AIOpsAnalyticsOrchestrator" has not been created yet.'
-    sleep 10s
-else
-    break
-fi
-done

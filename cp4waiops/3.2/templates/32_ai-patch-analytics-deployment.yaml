@@ -28,8 +28,8 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get po -n {{.Values.spec.aiManager.namespace}} aiops-ir-analytics-probablecause)
-                if [[ $? != 0 ]]; then
+                READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics-probablecause)
+                if [[ ! $READY  =~ '/1' ]]; then
                   echo 'Topology Pods not ready yet.'
                   sleep 10s
                 else

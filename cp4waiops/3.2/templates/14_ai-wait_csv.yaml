@@ -34,5 +34,8 @@ spec:
                   break
                 fi
               done
+
+
       restartPolicy: Never
+      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

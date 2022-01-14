@@ -32,4 +32,5 @@ spec:
 
 
       restartPolicy: Never
+      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

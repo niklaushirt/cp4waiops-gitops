@@ -8,7 +8,7 @@ spec:
   global:
     registry: docker.io
     logtostdout: true
-    storageClassName: {.Values.turboStorageClass}}
+    storageClassName: {{.Values.turboStorageClass}}
     repository: turbonomic
     tag: 8.3.4
     externalArangoDBName: arango.turbo.svc.cluster.local

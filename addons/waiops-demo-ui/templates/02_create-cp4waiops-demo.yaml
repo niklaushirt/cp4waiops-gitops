@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: demo-ui
   namespace: {{.Values.waiopsNamespace}}
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
   labels:
       app:  demo-ui
 spec:
@@ -39,6 +41,8 @@ kind: Service
 metadata:
   name:  demo-ui-service
   namespace: {{.Values.waiopsNamespace}}
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   selector:
     app:  demo-ui
@@ -52,6 +56,8 @@ kind: Route
 metadata:
   name:  cp4waiops-demo-ui
   namespace: {{.Values.waiopsNamespace}}
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   to:
     kind: Service

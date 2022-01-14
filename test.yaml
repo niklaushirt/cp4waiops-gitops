@@ -1,0 +1,17 @@
+cat <<EOF 
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name:  demo-ui-config
+    namespace: cp4waiops
+  data:
+    LOG_ITERATIONS: '10'
+    TOKEN: 'token2022'
+    KAFKA_BROKER: $KAFKA_BROKER
+    KAFKA_USER: $KAFKA_USER
+    KAFKA_PWD: $KAFKA_PWD
+    KAFKA_TOPIC_EVENTS: $KAFKA_TOPIC_EVENTS
+    KAFKA_TOPIC_LOGS: $KAFKA_TOPIC_LOGS
+    CERT_ELEMENT:  |-
+      "$CERT_ELEMENT"
+EOF

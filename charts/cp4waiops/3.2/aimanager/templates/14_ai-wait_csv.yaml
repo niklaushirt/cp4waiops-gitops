@@ -25,6 +25,19 @@ spec:
             - /bin/sh
             - -c
             - |
+
+              while : ; do
+                READY=$(oc get csv  -n cp4waiops | wc -l)
+                if [[ {{$READY}}  > 7 ]]; then
+                  echo "AIOps Operator is not ready yet. $READY created"
+                  sleep 10s
+                else
+                  break
+                fi
+              done
+
+
+
               while : ; do
                 READY=$(oc get csv  -n {{.Values.spec.aiManager.namespace}})
                 if [[ $READY  =~ 'Installing' ]]; then

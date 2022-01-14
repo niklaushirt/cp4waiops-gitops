@@ -141,3 +141,4 @@ echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Application in ArgoCD"
 oc apply -n openshift-gitops -f /tmp/cp4waiops-aimanager.yaml
+

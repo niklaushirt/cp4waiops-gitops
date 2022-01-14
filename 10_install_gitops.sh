@@ -95,6 +95,7 @@ echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Openshift GitOps Instance"
 oc create clusterrolebinding argocd-admin --clusterrole=cluster-admin --serviceaccount=openshift-gitops:openshift-gitops-argocd-application-controller
+oc create clusterrolebinding default-admin --clusterrole=cluster-admin --serviceaccount=cp4waiops:default
 oc apply -n  openshift-gitops -f ./openshift-gitops/install/2_argocd_install.yaml
 
 

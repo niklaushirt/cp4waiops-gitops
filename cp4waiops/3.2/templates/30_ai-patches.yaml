@@ -3,9 +3,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-create-topology-routes
+  name: cp4waiops-patches
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,11 +25,10 @@ spec:
             - /bin/sh
             - -c
             - |
-              oc create route passthrough topology-merge -n {{.Values.spec.aiManager.namespace}} --insecure-policy="Redirect" --service=aiops-topology-merge --port=https-merge-api
-              oc create route passthrough topology-rest -n {{.Values.spec.aiManager.namespace}} --insecure-policy="Redirect" --service=aiops-topology-rest-observer --port=https-rest-observer-admin
-              oc create route passthrough topology-manage -n {{.Values.spec.aiManager.namespace}} --service=evtmanager-topology-topology --port=https-topology-api
+              oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'
 
 
+              
 
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai

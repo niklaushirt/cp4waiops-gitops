@@ -5,6 +5,8 @@ kind: ConfigMap
 metadata:
   name: openldap-seedusers
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 data:
   seedusers.ldif: |    
     dn: ou=Groups,dc=ibm,dc=com
@@ -156,6 +158,8 @@ metadata:
     app: openldap
   name: openldap
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   ports:
     - port: 389
@@ -171,6 +175,8 @@ kind: Service
 metadata:
   name: openldap-admin
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   type: NodePort
   ports:
@@ -186,6 +192,8 @@ kind: Deployment
 metadata:
   name: openldap
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
   labels:
     app: openldap
 spec:
@@ -245,6 +253,8 @@ kind: Deployment
 metadata:
   name: openldap-admin
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   replicas: 1
   selector:
@@ -272,6 +282,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: openldap
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
   labels:
     app: openldap
 spec:
@@ -287,6 +299,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: openldap-admin
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   to:
     kind: Service

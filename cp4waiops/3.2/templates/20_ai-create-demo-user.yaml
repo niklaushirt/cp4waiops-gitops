@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-create-demo-user
+  name: 20-cp4waiops-create-demo-user
   annotations:
     argocd.argoproj.io/sync-wave: "200"
   namespace: {{.Values.spec.aiManager.namespace}}

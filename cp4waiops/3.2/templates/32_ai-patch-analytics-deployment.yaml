@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-patch-analytics-deployment
+  name: 32-cp4waiops-patch-analytics-deployment
   annotations:
     argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}
@@ -47,7 +47,7 @@ spec:
               oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep ImagePull|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
 
               sleep 30s
-              
+
               while : ; do
                 READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics)
                 if [[ $READY  =~ 'ErrImagePull' ]]; then

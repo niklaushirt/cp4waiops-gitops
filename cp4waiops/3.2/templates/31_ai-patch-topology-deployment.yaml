@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cp4waiops-patch-topology-deployment
+  name: 31-cp4waiops-patch-topology-deployment
   annotations:
     argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}

@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-aiops-network-policy
+  name: 01-configure-aiops-network-policy
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/sync-wave: "50"

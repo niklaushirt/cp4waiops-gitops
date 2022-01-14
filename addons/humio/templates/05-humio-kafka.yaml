@@ -140,8 +140,6 @@ kind: ClusterRoleBinding
 metadata:
   name: humio-instance-post-install
   namespace: humio-logging
-  annotations:
-    argocd.argoproj.io/sync-wave: "100"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

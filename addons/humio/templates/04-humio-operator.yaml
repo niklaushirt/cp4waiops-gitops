@@ -170,8 +170,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: 'humio-logging-humio-operator'
-  annotations:
-    argocd.argoproj.io/sync-wave: "100"
   labels:
     app: 'humio'
     app.kubernetes.io/name: 'humio-operator'

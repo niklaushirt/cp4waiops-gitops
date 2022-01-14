@@ -30,7 +30,7 @@ spec:
               while : ; do
                 READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics-probablecause)
                 if [[ ! $READY  =~ '/1' ]]; then
-                  echo 'Topology Pods not ready yet.'
+                  echo 'Analytics Pods not ready yet.'
                   sleep 10s
                 else
                   break
@@ -47,6 +47,24 @@ spec:
               oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep ImagePull|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
 
  
+              while : ; do
+                READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics)
+                if [[ $READY  =~ 'ErrImagePull' ]]; then
+                  echo 'Analytics Pods not ready yet.'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-topology-service-account -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-analytics-spark-worker -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-analytics-spark-pipeline-composer -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-analytics-spark-master -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-analytics-probablecause -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-analytics-classifier -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc patch -n {{.Values.spec.aiManager.namespace}} serviceaccount aiops-ir-lifecycle-eventprocessor-ep -p '{"imagePullSecrets": [{"name": "ibm-entitlement-key"}]}'
+                  oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep ImagePull|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
+                  sleep 30s
+                else
+                  break
+                fi
+              done
+
 
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai

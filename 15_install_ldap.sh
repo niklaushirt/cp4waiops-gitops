@@ -70,5 +70,5 @@ echo "**************************************************************************
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Application in ArgoCD"
-oc apply -n openshift-gitops -f ./openshift-gitops/applications/ldap.yaml
+oc apply -n openshift-gitops -f ./argocd/applications/ldap.yaml
 

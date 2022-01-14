@@ -10,7 +10,7 @@ spec:
     namespace: awx
     server: 'https://kubernetes.default.svc'
   source:
-    path: addons/awx
+    path: charts/addons/awx
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

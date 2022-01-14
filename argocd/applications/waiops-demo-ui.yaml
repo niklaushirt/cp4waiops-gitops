@@ -10,7 +10,7 @@ spec:
     namespace: cp4waiops
     server: 'https://kubernetes.default.svc'
   source:
-    path: addons/waiops-demo-ui
+    path: charts/addons/waiops-demo-ui
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

@@ -10,7 +10,7 @@ spec:
     namespace: robot-shop
     server: 'https://kubernetes.default.svc'
   source:
-    path: addons/robotshop
+    path: charts/addons/robotshop
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

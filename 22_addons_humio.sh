@@ -105,5 +105,5 @@ oc create clusterrolebinding default-humio-admin --clusterrole=cluster-admin --s
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Application in ArgoCD"
-oc apply -n openshift-gitops -f ./openshift-gitops/applications/humio.yaml
+oc apply -n openshift-gitops -f ./argocd/applications/humio.yaml
 

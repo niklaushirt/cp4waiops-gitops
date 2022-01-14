@@ -131,13 +131,13 @@ echo "**************************************************************************
 
 echo "  "
 echo "***************************************************************************************************************************************************"
-echo "  📥 Prepare CP4WAIOPS ArgoCD Application Definition"
-cp ./openshift-gitops/applications/cp4waiops-aimanager.yaml /tmp/cp4waiops-aimanager.yaml
+echo "  📥 Prepare ArgoCD Application Definition"
+cp ./argocd/applications/cp4waiops-aimanager.yaml /tmp/cp4waiops-aimanager.yaml
 ${SED} -i "s/<PULL_TOKEN>/$ENTITLED_REGISTRY_KEY/" /tmp/cp4waiops-aimanager.yaml
 
 cat /tmp/cp4waiops-aimanager.yaml
 
 echo "  "
 echo "***************************************************************************************************************************************************"
-echo "  📥 Create CP4WAIOPS Application in ArgoCD"
+echo "  📥 Create Application in ArgoCD"
 oc apply -n openshift-gitops -f /tmp/cp4waiops-aimanager.yaml

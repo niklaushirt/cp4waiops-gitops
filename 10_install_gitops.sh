@@ -73,12 +73,12 @@ echo "**************************************************************************
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Namespace"
-oc create ns openshift-gitops
+oc create ns argocd
 
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Openshift GitOps Operator"
-oc apply -n openshift-operators -f ./openshift-gitops/install/1_argocd_sub.yaml
+oc apply -n openshift-operators -f ./argocd/install/1_argocd_sub.yaml
 
 
 while : ; do
@@ -94,13 +94,13 @@ done
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Openshift GitOps Instance"
-oc create clusterrolebinding argocd-admin --clusterrole=cluster-admin --serviceaccount=openshift-gitops:openshift-gitops-argocd-application-controller
+oc create clusterrolebinding argocd-admin --clusterrole=cluster-admin --serviceaccount=argocd:argocd-argocd-application-controller
 oc create clusterrolebinding default-admin --clusterrole=cluster-admin --serviceaccount=cp4waiops:default
-oc apply -n  openshift-gitops -f ./openshift-gitops/install/2_argocd_install.yaml
+oc apply -n  argocd -f ./argocd/install/2_argocd_install.yaml
 
 
 while : ; do
-    READY=$(oc get ArgoCD -n openshift-gitops openshift-gitops -o jsonpath={.status}|| true) 
+    READY=$(oc get ArgoCD -n argocd argocd -o jsonpath={.status}|| true) 
     if [[ ! $READY  =~ '"server":"Running"' ]]; then
         echo "   🕦 Openshift GitOps Instance is not ready. Waiting for 10 seconds...." && sleep 10; 
     else
@@ -115,10 +115,10 @@ echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  🔐 Login Credentials"
 echo "  "
-echo "            🌏 URL:      https://$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})"
+echo "            🌏 URL:      https://$(oc get route -n  argocd  argocd-server -o jsonpath={.spec.host})"
 echo "  "
 echo "            🧔 User:       admin"
-echo "            🔐 Password:   "$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+echo "            🔐 Password:   "$(oc get secret -n argocd argocd-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
 echo "  "
 
 

@@ -1,27 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cp4waiops
+  name: ldap
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: cp4waiops
+    namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: cp4waiops/3.2
+    path: charts/addons/ldap
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
-      parameters:
-        - name: spec.dockerPassword
-          value: >-
-            <PULL_TOKEN>
   project: default
   syncPolicy:
     automated:
       prune: false
       selfHeal: false
-

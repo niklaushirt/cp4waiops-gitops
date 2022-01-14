@@ -2,15 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: turbonomic
+  name: humio
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: turbonomic
+    namespace: humio-logging
     server: 'https://kubernetes.default.svc'
   source:
-    path: addons/turbonomic
+    path: charts/addons/humio
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

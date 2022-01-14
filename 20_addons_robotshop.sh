@@ -74,5 +74,5 @@ oc create ns robot-shop
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create RobotShop Application in ArgoCD"
-oc apply -n openshift-gitops -f ./openshift-gitops/applications/robot-shop.yaml
+oc apply -n openshift-gitops -f ./argocd/applications/robot-shop.yaml
 

@@ -497,7 +497,7 @@ spec:
   - metadata:
       name: datadir-0
     spec:
-      storageClassName: {{STORAGE_CLASS_HUMIO}}
+      storageClassName: {{.Values.humioStorageClass}}
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:

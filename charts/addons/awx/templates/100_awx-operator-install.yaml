@@ -1,14 +1,9 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    control-plane: controller-manager
-  name: awx
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: awxbackups.awx.ansible.com
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   group: awx.ansible.com
   names:
@@ -88,6 +83,8 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: awxrestores.awx.ansible.com
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   group: awx.ansible.com
   names:
@@ -170,6 +167,8 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: awxs.awx.ansible.com
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   group: awx.ansible.com
   names:
@@ -636,12 +635,16 @@ kind: ServiceAccount
 metadata:
   name: awx-operator-controller-manager
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: awx-operator-leader-election-role
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 rules:
 - apiGroups:
   - ""
@@ -681,6 +684,8 @@ metadata:
   creationTimestamp: null
   name: awx-operator-manager-role
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 rules:
 - apiGroups:
   - route.openshift.io
@@ -786,6 +791,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: awx-operator-metrics-reader
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 rules:
 - nonResourceURLs:
   - /metrics
@@ -796,6 +803,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: awx-operator-proxy-role
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 rules:
 - apiGroups:
   - authentication.k8s.io
@@ -815,6 +824,8 @@ kind: RoleBinding
 metadata:
   name: awx-operator-leader-election-rolebinding
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -829,6 +840,8 @@ kind: RoleBinding
 metadata:
   name: awx-operator-manager-rolebinding
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -842,6 +855,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: awx-operator-proxy-rolebinding
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -868,6 +883,8 @@ kind: ConfigMap
 metadata:
   name: awx-operator-manager-config
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 ---
 apiVersion: v1
 kind: Service
@@ -876,6 +893,8 @@ metadata:
     control-plane: controller-manager
   name: awx-operator-controller-manager-metrics-service
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   ports:
   - name: https
@@ -892,6 +911,8 @@ metadata:
     control-plane: controller-manager
   name: awx-operator-controller-manager
   namespace: awx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
 spec:
   replicas: 1
   selector:

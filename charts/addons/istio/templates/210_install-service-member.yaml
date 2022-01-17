@@ -5,6 +5,7 @@ metadata:
   name: default
   annotations:
     argocd.argoproj.io/sync-wave: "210"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   members:
     - robot-shop

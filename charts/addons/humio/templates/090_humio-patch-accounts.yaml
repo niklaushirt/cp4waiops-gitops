@@ -2,9 +2,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 03-humio-patch-accounts
+  name: 100-humio-patch-accounts
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "090"
   namespace: humio-logging
 spec:
   template:

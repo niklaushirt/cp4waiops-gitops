@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 210-waitfor-humio
+  name: 110-waitfor-operators
   annotations:
     argocd.argoproj.io/sync-wave: "110"
   namespace: humio-logging

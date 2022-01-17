@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 999-wait-running
+  name: 999-wait-running-turbonomic
   annotations:
     argocd.argoproj.io/sync-wave: "999"
     argocd.argoproj.io/hook: PostSync

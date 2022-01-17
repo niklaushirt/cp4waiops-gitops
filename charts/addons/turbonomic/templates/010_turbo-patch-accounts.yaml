@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 010_turbo-patch-accounts
+  name: 010-turbo-patch-accounts
   annotations:
     argocd.argoproj.io/sync-wave: "10"
   namespace: turbonomic

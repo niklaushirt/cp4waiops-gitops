@@ -4,6 +4,8 @@ metadata:
   name: openshift-operators-redhat 
   annotations:
     openshift.io/node-selector: ""
+    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     openshift.io/cluster-monitoring: "true" 
 ---
@@ -13,6 +15,8 @@ metadata:
   name: openshift-logging
   annotations:
     openshift.io/node-selector: ""
+    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     openshift.io/cluster-monitoring: "true"
 ---
@@ -21,6 +25,10 @@ kind: OperatorGroup
 metadata:
   name: openshift-operators-redhat
   namespace: openshift-operators-redhat 
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
 spec: {}
 ---
 apiVersion: operators.coreos.com/v1alpha1
@@ -28,6 +36,10 @@ kind: Subscription
 metadata:
   name: "elasticsearch-operator"
   namespace: "openshift-operators-redhat" 
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
 spec:
   channel: "stable-5.3" 
   installPlanApproval: "Automatic"

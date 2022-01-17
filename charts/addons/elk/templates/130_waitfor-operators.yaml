@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: 130-waitfor-operators
   annotations:
-    argocd.argoproj.io/sync-wave: "110"
+    argocd.argoproj.io/sync-wave: "130"
   namespace: openshift-logging
 spec:
   template:

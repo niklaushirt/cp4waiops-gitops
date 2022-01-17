@@ -1,0 +1,35 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 03-humio-patch-accounts
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
+  namespace: humio-logging
+spec:
+  template:
+    spec:
+      containers:
+        - name: config
+          image: quay.io/openshift/origin-cli:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -x
+
+              oc adm policy add-scc-to-user privileged -n humio-logging -z humio-operator
+              oc adm policy add-scc-to-user privileged -n humio-logging -z humiocluster-humio
+
+
+      restartPolicy: Never
+      serviceAccountName: default
+  backoffLimit: 4

@@ -25,7 +25,7 @@ spec:
             - |
               set -x
 
-              oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep Error|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
+              oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep Error|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}} --ignore-not-found || true
 
 
 

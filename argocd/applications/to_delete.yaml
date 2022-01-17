@@ -1,6 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: test
+spec:
+  destination:
+    name: ''
+    namespace: ''
+    server: 'https://c113-e.eu-de.containers.cloud.ibm.com:31746'
+  source:
+    path: charts/addons/turbonomic
+    repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
+    targetRevision: test
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+
+
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: cp4waiops
   namespace: openshift-gitops
 spec:

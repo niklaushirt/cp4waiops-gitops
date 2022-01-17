@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 200_ldap-waitfor-ldap
+  name: 200-ldap-waitfor-ldap
   annotations:
     argocd.argoproj.io/sync-wave: "200"
   namespace: {{.Values.aiManagerNamespace}}

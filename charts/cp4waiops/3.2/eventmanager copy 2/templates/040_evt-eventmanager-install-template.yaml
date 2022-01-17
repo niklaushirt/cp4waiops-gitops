@@ -12,11 +12,18 @@ spec:
     antiAffinity: false
     imagePullPolicy: IfNotPresent
     imagePullRepository: cp.icr.io/cp/noi
-  zen:
     ignoreReady: false
     instanceId: iaf-zen-cpdservice
     serviceInstanceName: iaf-zen-cpdservice
     serviceNamespace: {{.Values.spec.eventManager.namespace}}
+    storage:
+      storageClassName: {{.Values.spec.storageClass}}
+  zen:
+    ignoreReady: false
+    instanceId: iaf-zen-cpdservice
+    #serviceInstanceName: iaf-zen-cpdservice
+    #serviceNamespace: cp4waiops
+    serviceInstanceName: iaf-zen-cpdservice
     storage:
       storageClassName: '{{.Values.spec.storageClass}}'
   ldap:
@@ -85,7 +92,7 @@ spec:
       vmwarensx: false
     netDisco: false
   version: {{.Values.spec.eventManager.version}}
-  entitlementSecret: ibm-entitlement-key
+  entitlementSecret: ibm-aiops-pull-secret
   clusterDomain: ''
   integrations:
     humio:

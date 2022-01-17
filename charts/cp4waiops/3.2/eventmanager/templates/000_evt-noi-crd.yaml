@@ -196,8 +196,6 @@ spec:
                     object that mimics your helm values file  Example custom
                     resource apiVersion: noi.netcool.ibm.com/v1beta1 kind: NOI
                     metadata:   name: firstinstall 
-                     spec:   appVersion: 1.0.0   helmValues:     global:       license: "accept"       openshift:         enabled true         clusterName: "xyz"       environmentSize: "size0"    webgui       testAttribute: "abc" will be loaded into go memory as    interface can be any type. In our case it will eitehr be string or another map of string to interface 
-                        map(string->interface)        "global" ->  map(string->interface)                       "license"        -> "accept" (string)                       "openshift"      -> map(string->interface)                                               "enabled" -> "true" (string)                                               "clusterName"->"xyz" (string)                       "environmentSize"-> "size0" (string)         "webgui" ->  map(string->interface)                         "testAttribute"        -> "abc" (string)   These values are then available to The GO templating   example {{ .Values.global.license }} will be reslved to "accept"
                   type: object
                   x-kubernetes-preserve-unknown-fields: true
                 backupRestore:
@@ -433,7 +431,7 @@ spec:
                     resource apiVersion: noi.netcool.ibm.com/v1beta1 kind: NOI
                     metadata:   name: firstinstall 
                      spec:   appVersion: 1.0.0   helmValues:     global:       license: "accept"       openshift:         enabled true         clusterName: "xyz"       environmentSize: "size0"    webgui       testAttribute: "abc" will be loaded into go memory as    interface can be any type. In our case it will eitehr be string or another map of string to interface 
-                        map(string->interface)        "global" ->  map(string->interface)                       "license"        -> "accept" (string)                       "openshift"      -> map(string->interface)                                               "enabled" -> "true" (string)                                               "clusterName"->"xyz" (string)                       "environmentSize"-> "size0" (string)         "webgui" ->  map(string->interface)                         "testAttribute"        -> "abc" (string)   These values are then available to The GO templating   example {{ .Values.global.license }} will be reslved to "accept"
+                        map(string->interface)        "global" ->  map(string->interface)                       "license"        -> "accept" (string)                       "openshift"      -> map(string->interface)                                               "enabled" -> "true" (string)                                               "clusterName"->"xyz" (string)                       "environmentSize"-> "size0" (string)         "webgui" ->  map(string->interface)                         "testAttribute"        -> "abc" (string)   These values are then available to The GO templating   example  will be reslved to "accept"
                   type: object
                   x-kubernetes-preserve-unknown-fields: true
                 entitlementSecret:

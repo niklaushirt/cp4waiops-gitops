@@ -62,11 +62,11 @@ spec:
 
         ## Install RobotShop Application
         robotshop: 
-          install: true
+          install: false
 
         ## Install and register OpenLdap
         ldap: 
-          install: true
+          install: false
           ldapDomain: ibm.com
           ldapBase: dc=ibm,dc=com
           ldapPassword: P4ssw0rd!

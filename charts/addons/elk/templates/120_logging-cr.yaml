@@ -13,7 +13,7 @@ spec:
     elasticsearch:
       nodeCount: 3 
       storage:
-        storageClassName: "{{ WAIOPS_STORAGE_CLASS_FILE }}" 
+        storageClassName: {{.Values.elkStorageClass}}
         size: 40G
       resources: 
         requests:

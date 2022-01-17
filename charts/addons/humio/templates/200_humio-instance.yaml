@@ -2,6 +2,8 @@ apiVersion: core.humio.com/v1alpha1
 kind: HumioCluster
 metadata:
   name: humiocluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
 spec:
   license:
     secretKeyRef:
@@ -22,7 +24,7 @@ spec:
       cpu: "1"
       memory: 2Gi
   dataVolumePersistentVolumeClaimSpecTemplate:
-    storageClassName: {{STORAGE_CLASS_HUMIO}}
+    storageClassName: {{.Values.humioStorageClass}}
     accessModes: [ReadWriteOnce]
     resources:
       requests:

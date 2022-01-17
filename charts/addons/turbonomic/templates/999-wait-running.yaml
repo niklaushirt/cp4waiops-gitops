@@ -1,11 +1,11 @@
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 02-waitfor-ldap
+  name: 999-wait-running
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
-  namespace: {{.Values.aiManagerNamespace}}
+    argocd.argoproj.io/sync-wave: "999"
+    argocd.argoproj.io/hook: PostSync
+  namespace: awx
 spec:
   template:
     spec:
@@ -27,15 +27,15 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get po -n default | grep ldap)
-                if [[ $READY  =~ '0/1' ]]; then
-                  echo 'LDAP Pods not ready yet.'
-                  sleep 10s
+                READY=$(oc get pod -n turbonomic | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '58' ]]; then
+                  echo 'Deployment not completed yet.'
+                  sleep 5
                 else
                   break
                 fi
               done
-
-      restartPolicy: Never
+          
       serviceAccountName: openshift-argocd-admin-ai
+      restartPolicy: Never
   backoffLimit: 4

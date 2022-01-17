@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 03-register-ldap
+  name: 300_ldap-register-ldap
   annotations:
     argocd.argoproj.io/sync-wave: "300"
   namespace: {{.Values.aiManagerNamespace}}

@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 999-wait-running
+  name: 210_ldap-waitfor-common-services
   annotations:
-    argocd.argoproj.io/sync-wave: "999"
+    argocd.argoproj.io/sync-wave: "210"
     argocd.argoproj.io/hook: PostSync
   namespace: awx
 spec:
@@ -27,9 +27,9 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get pod -n awx | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[ ! $READY  =~ '3' ]]; then
-                  echo 'Deployment not completed yet.'
+                READY=$(oc get pod -n ibm-common-services | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '33' ]]; then
+                  echo 'ibm-common-services Deployment not ready yet.'
                   sleep 30
                 else
                   break

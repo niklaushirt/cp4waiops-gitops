@@ -2,10 +2,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 03-humio-patch-accounts
+  name: 200_ldap-waitfor-ldap
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
-  namespace: turbonomic
+    argocd.argoproj.io/sync-wave: "200"
+  namespace: {{.Values.aiManagerNamespace}}
 spec:
   template:
     spec:
@@ -26,11 +26,16 @@ spec:
             - |
               set -x
 
-              oc adm policy add-scc-to-group anyuid system:serviceaccounts:turbonomic
-              oc create clusterrolebinding turbonomic-admin1 --clusterrole=cluster-admin --serviceaccount=turbonomic:t8c-operator
-              oc create clusterrolebinding turbonomic-admin2 --clusterrole=cluster-admin --serviceaccount=turbonomic:turbo-user
-
+              while : ; do
+                READY=$(oc get po -n default | grep ldap)
+                if [[ $READY  =~ '0/1' ]]; then
+                  echo 'LDAP Pods not ready yet.'
+                  sleep 10s
+                else
+                  break
+                fi
+              done
 
       restartPolicy: Never
-      serviceAccountName: default
+      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

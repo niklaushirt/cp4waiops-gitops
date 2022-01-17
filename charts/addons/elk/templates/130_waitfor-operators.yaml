@@ -27,8 +27,8 @@ spec:
               set -x
 
                 while : ; do
-                READY=$(oc get pod -n openshift-logging | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '12' ]]; then
+                READY=$(oc get pod -n openshift-logging | grep -v "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -gt '1' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 30
                 else
@@ -43,5 +43,5 @@ spec:
               rm admin-ca   || true
 
       restartPolicy: Never
-      serviceAccountName: default
+      serviceAccountName: cluster-logging-operator
   backoffLimit: 4

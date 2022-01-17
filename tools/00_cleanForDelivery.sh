@@ -44,6 +44,7 @@ rm -f ./iaf-system-backup.yaml
 
 
 
+
 echo "--------------------------------------------------------------------------------------------------------------------------------"
 echo "    🚀  Check for Tokens and Keys"
 echo "--------------------------------------------------------------------------------------------------------------------------------"
@@ -57,4 +58,7 @@ echo "      🔎  Check for Slack User Token"
 grep -rnw '.' -e 'xoxp' | grep -v 'DO_NOT_DELIVER' |grep -v "must start with xoxp"| grep 'xoxp-*'
 echo "      🔎  Check for Slack Bot Token"
 grep -rnw '.' -e 'xoxb' | grep -v 'DO_NOT_DELIVER' |grep -v "must start with xoxb"| grep 'xoxb-*'
+
+
+git add . && git commit -m "220113" && git push
 

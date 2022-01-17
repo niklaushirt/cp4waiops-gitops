@@ -21,3 +21,4 @@ spec:
     syncOptions:
       - Validate=false
       - SkipDryRunOnMissingResource=true
+      - FailOnSharedResource=true

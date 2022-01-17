@@ -31,10 +31,8 @@ Please drop me a note on Slack or by mail nikh@ch.ibm.com if you find glitches o
 1. [Prerequisites](#1-prerequisites)
 1. [OpenShift GitOps Install](#2-openshift-gitops-install)
 1. [AI Manager Base Install](#3-cp4waiops-base-install)
-	- [Install AI Manager](#31-install-aimanager)
-	- [Install Event Manager](#32-install-eventmanager)
-	- [Install LDAP](#33-install-openldap)
-	- [Install RobotShop](#34-install-robotshop)
+	- [Install AI Manager](#31-install-ai-manager)
+	- [Install Event Manager](#32-install-event-manager)
 1. [Configure Applications and Topology](#4-configure-applications-and-topology)
 1. [Training](#5-training)
 1. [Slack integration](#6-slack-integration)
@@ -444,6 +442,20 @@ spec:
     ##
     namespace: cp4waiops
 
+
+    ## Install demo content
+    democontent:
+
+        ## Install RobotShop Application
+        robotshop: 
+          install: true
+
+        ## Install and register OpenLdap
+        ldap: 
+          install: true
+          ldapDomain: ibm.com
+          ldapBase: dc=ibm,dc=com
+          ldapPassword: P4ssw0rd!
 ```
 
 <div style="page-break-after: always;"></div>
@@ -478,6 +490,9 @@ This will install:
 
 
 - CP4WAIOPS AI Manager
+- RobotShop Application (if enabled)
+- OpenLDAP (if enabled)
+- Register OpenLDAP with AI Manager (if enabled)
 
 
 <div style="page-break-after: always;"></div>
@@ -497,7 +512,7 @@ and check that `Sync Status` and `Sync Result` are OK
 <div style="page-break-after: always;"></div>
 
 
-## 3.2 Install EventManager
+## 3.2 Install Event Manager
 
 To get the token, see [here](#3.1.2-get-the-installation-token) 
 
@@ -600,7 +615,7 @@ and check that `Sync Status` and `Sync Result` are OK
 
 ## 3.3 Install OpenLDAP
 
-
+>❗Only needed if disabled in AI Manager Base Install
 
 ### 3.3.1 Adapt configuration
 
@@ -675,7 +690,7 @@ You can check/modify those in the OpenLDAPAdmin interface that you can access wi
 ## 3.4 Install RobotShop
 
 
-
+>❗Only needed if disabled in AI Manager Base Install
 
 ### 3.4.1 🚀 Start installation
 

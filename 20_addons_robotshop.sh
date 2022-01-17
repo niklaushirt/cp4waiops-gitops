@@ -74,5 +74,6 @@ oc create ns robot-shop
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create RobotShop Application in ArgoCD"
+oc create clusterrolebinding default-robotinfo1-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:default
 oc apply -n openshift-gitops -f ./argocd/applications/robot-shop.yaml
 

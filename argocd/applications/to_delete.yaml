@@ -22,8 +22,8 @@ spec:
   project: default
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -60,8 +60,8 @@ spec:
   project: default
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
 
 
 oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode

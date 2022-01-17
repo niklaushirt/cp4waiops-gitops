@@ -2,10 +2,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 02-waitfor-ldap
+  name: 210-waitfor-humio
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
-  namespace: {{.Values.aiManagerNamespace}}
+    argocd.argoproj.io/sync-wave: "210"
+  namespace: humio-logging
 spec:
   template:
     spec:
@@ -27,7 +27,7 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get po -n default | grep ldap)
+                READY=$(oc get po -n humio-logging | grep ldap)
                 if [[ $READY  =~ '0/1' ]]; then
                   echo 'LDAP Pods not ready yet.'
                   sleep 10s
@@ -37,5 +37,5 @@ spec:
               done
 
       restartPolicy: Never
-      serviceAccountName: openshift-argocd-admin-ai
+      serviceAccountName: humio-operator
   backoffLimit: 4

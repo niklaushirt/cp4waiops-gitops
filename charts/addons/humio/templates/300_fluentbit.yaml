@@ -5,6 +5,8 @@ kind: ServiceAccount
 metadata:
   name: humio-fluentbit-fluentbit-read
   namespace: humio-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 ---
 # Source: humio-helm-charts/charts/humio-fluentbit/templates/fluent-bit-configmap.yaml
 apiVersion: v1
@@ -12,6 +14,8 @@ kind: ConfigMap
 metadata:
   name: humio-fluentbit-fluent-bit-config
   namespace: humio-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
   labels:
     k8s-app: humio-fluentbit
 data:
@@ -142,6 +146,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: humio-fluentbit-fluentbit-read
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 rules:
 - apiGroups: [""]
   resources:
@@ -158,6 +164,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: humio-fluentbit-fluentbit-read
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -173,6 +181,8 @@ kind: DaemonSet
 metadata:
   name: humio-fluentbit-fluentbit
   namespace: humio-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
   labels:
     k8s-app: humio-fluentbit
     version: v1
@@ -262,6 +272,8 @@ kind: SecurityContextConstraints
 apiVersion: security.openshift.io/v1
 metadata:
   name: humio-fluentbit-fluentbit
+  annotations:
+    argocd.argoproj.io/sync-wave: "300"
 allowPrivilegedContainer: true
 allowHostNetwork: true
 allowHostDirVolumePlugin: true
@@ -299,6 +311,7 @@ metadata:
   name: fluentbit-custom-token
   annotations:
     "helm.sh/hook": "pre-install"
+    argocd.argoproj.io/sync-wave: "300"
 type: Opaque
 data:
   token: "Y2hhbmdlbWU="

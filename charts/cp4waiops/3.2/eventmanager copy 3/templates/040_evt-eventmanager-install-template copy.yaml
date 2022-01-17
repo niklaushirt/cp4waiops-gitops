@@ -1,10 +1,10 @@
 apiVersion: noi.ibm.com/v1beta1
 kind: NOI
 metadata:
-  name: evtmanager
   namespace: {{.Values.spec.eventManager.namespace}}
   annotations:
     argocd.argoproj.io/sync-wave: "40"
+  name: evtmanager
 spec:
   license:
     accept: true
@@ -18,7 +18,7 @@ spec:
     serviceInstanceName: iaf-zen-cpdservice
     serviceNamespace: {{.Values.spec.eventManager.namespace}}
     storage:
-      storageClassName: {{.Values.spec.storageClass}}
+      storageClassName: '{{.Values.spec.storageClass}}'
   ldap:
     port: '389'
     mode: standalone
@@ -35,6 +35,12 @@ spec:
   backupRestore:
     enableAnalyticsBackups: false
   topology:
+    enable: false
+    storageClassElasticTopology: {{.Values.spec.storageClass}}
+    storageSizeElasticTopology: 75Gi
+    storageSizeFileObserver: 5Gi
+    storageClassFileObserver: {{.Values.spec.storageClass}}
+    iafCartridgeRequirementsName: ''   # cp4waiops-cartridge
     appDisco:
       enabled: false
       scaleSSS: '1'
@@ -48,8 +54,6 @@ spec:
       scaleDS: '1'
       db2user: db2inst1
       dbport: '50000'
-    iafCartridgeRequirementsName: ''
-    netDisco: false
     observers:
       docker: false
       taddm: false
@@ -79,10 +83,7 @@ spec:
       aws: false
       openstack: false
       vmwarensx: false
-    storageClassElasticTopology: {{.Values.spec.storageClass}}
-    storageClassFileObserver: {{.Values.spec.storageClass}}
-    storageSizeElasticTopology: 75Gi
-    storageSizeFileObserver: 5Gi
+    netDisco: false
   version: {{.Values.spec.eventManager.version}}
   entitlementSecret: ibm-entitlement-key
   clusterDomain: ''
@@ -107,9 +108,11 @@ spec:
     storageSizeCouchdb: 20Gi
     storageClassCassandraData: {{.Values.spec.storageClass}}
     storageSizeCassandraData: 50Gi
+    storageClassDB2: {{.Values.spec.storageClass}}
     storageClassElastic: {{.Values.spec.storageClass}}
+    storageSizeDB2: 5Gi
     storageClassImpactGUI: {{.Values.spec.storageClass}}
     storageSizeImpactGUI: 5Gi
     storageSizeElastic: 75Gi
     storageClassNCOBackup: {{.Values.spec.storageClass}}
-  deploymentType: {{.Values.spec.eventManager.deploymentType}}
+  deploymentType: trial

@@ -1,9 +1,7 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 39-cp4waiops-cleanup-stuck-pods
+  name: 210-argo-cp4waiops-cleanup-stuck-pods
   annotations:
     argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}

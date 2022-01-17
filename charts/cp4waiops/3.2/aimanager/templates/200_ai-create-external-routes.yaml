@@ -1,9 +1,7 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 21-cp4waiops-create-extrenal-routes
+  name: 200-argo-cp4waiops-create-extrenal-routes
   annotations:
     argocd.argoproj.io/sync-wave: "200"
   namespace: {{.Values.spec.aiManager.namespace}}

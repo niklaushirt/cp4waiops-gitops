@@ -1,11 +1,9 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 30-cp4waiops-patches
+  name: 120-argo-cp4waiops-wait-csv
   annotations:
-    argocd.argoproj.io/sync-wave: "210"
+    argocd.argoproj.io/sync-wave: "120"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,10 +23,21 @@ spec:
             - /bin/sh
             - -c
             - |
-              oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'
+
+              #sleep 240
 
 
-              
+
+              while : ; do
+                READY=$(oc get csv  -n {{.Values.spec.aiManager.namespace}})
+                if [[ $READY  =~ 'Installing' ]]; then
+                  echo '"AIOps Operator" is not ready yet.'
+                  sleep 10s
+                else
+                  break
+                fi
+              done
+
 
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai

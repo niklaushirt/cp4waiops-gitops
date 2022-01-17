@@ -1,11 +1,9 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 33-cp4waiops-restart-secret-jobs
+  name: 200-argo-cp4waiops-create-demo-user
   annotations:
-    argocd.argoproj.io/sync-wave: "210"
+    argocd.argoproj.io/sync-wave: "200"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,12 +23,10 @@ spec:
             - /bin/sh
             - -c
             - |
-              set -x
-
-              oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep Error|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
-
-
-
+              oc project {{.Values.spec.aiManager.namespace}}
+              oc create serviceaccount -n default demo-admin || true
+              oc create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=default:demo-admin || true
+              oc create clusterrolebinding ibm-zen-operator-serviceaccount --clusterrole=cluster-admin --serviceaccount=ibm-common-services:ibm-zen-operator-serviceaccount || true
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

@@ -1,8 +1,8 @@
-{{- if .Values.spec.aiManager.enabled }}
+
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 01-configure-aiops-network-policy
+  name: 50-argo-cp4waiops-configure-aiops-network-policy
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/sync-wave: "50"
@@ -59,4 +59,3 @@ spec:
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 1
-{{- end }}

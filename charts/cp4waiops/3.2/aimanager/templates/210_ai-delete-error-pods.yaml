@@ -1,11 +1,9 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 14-cp4waiops-wait-csv
+  name: 210-argo-cp4waiops-delete-error-pods
   annotations:
-    argocd.argoproj.io/sync-wave: "120"
+    argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,20 +23,10 @@ spec:
             - /bin/sh
             - -c
             - |
+              set -x
 
-              #sleep 240
+              oc delete pod $(oc get po -n {{.Values.spec.aiManager.namespace}}|grep Error|awk '{print$1}') -n {{.Values.spec.aiManager.namespace}}
 
-
-
-              while : ; do
-                READY=$(oc get csv  -n {{.Values.spec.aiManager.namespace}})
-                if [[ $READY  =~ 'Installing' ]]; then
-                  echo '"AIOps Operator" is not ready yet.'
-                  sleep 10s
-                else
-                  break
-                fi
-              done
 
 
       restartPolicy: Never

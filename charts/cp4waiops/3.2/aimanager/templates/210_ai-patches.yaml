@@ -1,11 +1,9 @@
-
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 20-cp4waiops-create-demo-user
+  name: 210-argo-cp4waiops-patches
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "210"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
@@ -25,10 +23,12 @@ spec:
             - /bin/sh
             - -c
             - |
-              oc project {{.Values.spec.aiManager.namespace}}
-              oc create serviceaccount -n default demo-admin || true
-              oc create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=default:demo-admin || true
-              oc create clusterrolebinding ibm-zen-operator-serviceaccount --clusterrole=cluster-admin --serviceaccount=ibm-common-services:ibm-zen-operator-serviceaccount || true
+              set -x
+              oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'
+
+
+              
+
       restartPolicy: Never
       serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

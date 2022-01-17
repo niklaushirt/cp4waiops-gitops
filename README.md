@@ -191,7 +191,7 @@ You need the following tools installed in order to follow through this guide:
 You can either run:
 
 ```
-sudo ./13_install_prerequisites_mac.sh
+sudo ./02_install_prerequisites_mac.sh
 ```
 
 #### 1.2.1.1 On Mac - Manual
@@ -208,6 +208,7 @@ brew install node
 brew install wget
 npm install elasticdump -g
 brew install jq
+brew install argocd
 
 curl -L https://github.com/IBM/cloud-pak-cli/releases/latest/download/cloudctl-darwin-amd64.tar.gz -o cloudctl-darwin-amd64.tar.gz
 tar xfvz cloudctl-darwin-amd64.tar.gz
@@ -252,7 +253,7 @@ rm README.md
 For Ubuntu you can either run (for other distros you're on your own, sorry):
 
 ```
-sudo ./14_install_prerequisites_ubuntu.sh
+sudo ./02_install_prerequisites_ubuntu.sh
 ```
 
 
@@ -270,6 +271,8 @@ sudo apt-get install -y kafkacat
 sudo apt-get install -y npm
 sudo apt-get install -y jq
 sudo npm install elasticdump -g
+curl -L https://github.com/argoproj/argo-cd/releases/download/v2.2.2/argocd-linux-amd64 -o argocd
+sudo mv argocd /usr/local/bin/argocd
 
 curl -L https://github.com/IBM/cloud-pak-cli/releases/latest/download/cloudctl-linux-amd64.tar.gz -o cloudctl-linux-amd64.tar.gz
 tar xfvz cloudctl-linux-amd64.tar.gz
@@ -352,7 +355,7 @@ Simply click on the green `CODE` button and select `Download Zip` to download th
 Just run the following:
 
 ```bash
-10_install_gitops.sh
+01_install_gitops.sh
 ```
 
 ## 2.2 Accessing OpenShift GitOps
@@ -464,11 +467,11 @@ eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp
 Just run:
 
 ```bash
-./11_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./10_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./11_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./10_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:
@@ -564,11 +567,11 @@ spec:
 Just run:
 
 ```bash
-./12_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./11_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./12_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./11_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:

@@ -31,7 +31,7 @@ spec:
 
 
               while : ; do
-                READY=$(oc get sa -n cp4waiops | grep aiops-topology-service-account)
+                READY=$(oc get sa -n {{.Values.spec.aiManager.namespace}} | grep aiops-topology-service-account)
                 if [[ ! $READY  =~ 'aiops-topology-service-account' ]]; then
                   echo 'Topology Service Account not present yet.'
                   sleep 30
@@ -43,7 +43,7 @@ spec:
  
  
                while : ; do
-                READY=$(oc get po -n cp4waiops | grep aiops-ir-analytics-|wc -l| tr -d ' ')
+                READY=$(oc get po -n {{.Values.spec.aiManager.namespace}} | grep aiops-ir-analytics-|wc -l| tr -d ' ')
                 if [[ ! $READY  =~ '5' ]]; then
                   echo 'Analytics Pods not ready yet.'
                   sleep 30
@@ -59,7 +59,7 @@ spec:
  
  
                while : ; do
-                READY=$(oc get po -n cp4waiops | grep aiops-ir-lifecycle-eventprocessor-ep)
+                READY=$(oc get po -n {{.Values.spec.aiManager.namespace}} | grep aiops-ir-lifecycle-eventprocessor-ep)
                 if [[ ! $READY  =~ '/1' ]]; then
                   echo 'Eventprocessor Pod not ready yet.'
                   sleep 30

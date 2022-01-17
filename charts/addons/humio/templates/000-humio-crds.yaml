@@ -5,6 +5,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.4.1
+    argocd.argoproj.io/sync-wave: "000"
   creationTimestamp: null
   name: humioactions.core.humio.com
 

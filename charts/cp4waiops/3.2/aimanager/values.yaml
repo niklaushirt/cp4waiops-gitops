@@ -62,7 +62,7 @@ spec:
 
         ## Install RobotShop Application
         robotshop: 
-          install: false
+          install: true
 
         ## Install and register OpenLdap
         ldap: 

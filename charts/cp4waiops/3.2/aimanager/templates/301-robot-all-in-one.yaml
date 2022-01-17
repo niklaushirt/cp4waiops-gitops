@@ -5,6 +5,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: web
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -17,6 +18,7 @@ apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
   name: robot-shop
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -54,6 +56,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: robot-shop
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 rules:
@@ -71,6 +74,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: robot-shop
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 roleRef:
@@ -87,6 +91,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cart
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -105,6 +110,7 @@ metadata:
     app: robot-shop
     service: catalogue
   name: catalogue
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -125,6 +131,7 @@ metadata:
   labels:
     app: robot-shop
     service: dispatch
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -144,6 +151,7 @@ metadata:
     app: robot-shop
     service: mongodb
   name: mongodb
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -162,6 +170,7 @@ metadata:
     app: robot-shop
     service: mysql
   name: mysql
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -180,6 +189,7 @@ metadata:
   labels:
     app: robot-shop
     service: payment
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -198,6 +208,7 @@ metadata:
   labels:
     app: robot-shop
     service: rabbitmq
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -222,6 +233,7 @@ metadata:
   labels:
     app: robot-shop
     service: ratings
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -240,6 +252,7 @@ metadata:
     app: robot-shop
     service: redis
   name: redis
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -258,6 +271,7 @@ metadata:
   labels:
     app: robot-shop
     service: shipping
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -276,6 +290,7 @@ metadata:
   labels:
     app: robot-shop
     service: user
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -294,6 +309,7 @@ metadata:
   labels:
     app: robot-shop
     service: web
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -315,6 +331,7 @@ metadata:
     app: robot-shop
     version: v1
     service: cart
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -362,6 +379,7 @@ metadata:
     app: robot-shop
     version: v1
     service: catalogue
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -409,6 +427,7 @@ metadata:
     app: robot-shop
     version: v1
     service: dispatch
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -456,6 +475,7 @@ metadata:
     app: robot-shop
     version: v1
     service: mongodb
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -499,6 +519,7 @@ metadata:
     app: robot-shop
     version: v1
     service: mysql
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -547,6 +568,7 @@ metadata:
     version: v1
     service: payment
     stage: prod
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -598,6 +620,7 @@ metadata:
     app: robot-shop
     version: v1
     service: rabbitmq
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -643,6 +666,7 @@ metadata:
     version: v2
     service: ratings
     stage: prod
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -696,6 +720,7 @@ metadata:
     app: robot-shop
     version: v1
     service: shipping
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -748,6 +773,7 @@ metadata:
     app: robot-shop
     version: v1
     service: user
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -797,6 +823,7 @@ metadata:
     app: robot-shop
     version: v1
     service: web
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:
@@ -845,6 +872,7 @@ metadata:
     version: v1
     service: redis
   name: redis
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "301"
 spec:

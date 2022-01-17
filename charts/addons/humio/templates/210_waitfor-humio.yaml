@@ -27,9 +27,9 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get po -n humio-logging | grep ldap)
-                if [[ $READY  =~ '0/1' ]]; then
-                  echo 'LDAP Pods not ready yet.'
+                READY=$(oc get po -n humio-logging | grep humiocluster-core)
+                if [[ ! $READY  =~ '2/2' ]]; then
+                  echo 'Humio not ready yet.'
                   sleep 10s
                 else
                   break

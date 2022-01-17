@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: openshift-argocd-admin-ai
+  name: openshift-argocd-admin-evt
   namespace: {{.Values.spec.eventManager.namespace}}
 ---
 kind: ClusterRoleBinding
@@ -14,7 +14,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
 subjects:
   - kind: ServiceAccount
-    name: openshift-argocd-admin-ai
+    name: openshift-argocd-admin-evt
     namespace: {{.Values.spec.eventManager.namespace}}
 roleRef:
   apiGroup: rbac.authorization.k8s.io

@@ -17,3 +17,8 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      #- Validate=false
+      - SkipDryRunOnMissingResource=true
+      #- FailOnSharedResource=true
+      #- CreateNamespace=true

@@ -1,8 +1,6 @@
 echo "Starting..."
-WAIOPS_PARAMETER=$(cat ./00_config_cp4waiops.yaml|grep EVTMGR_NAMESPACE:)
-EVTMGR_NAMESPACE=${WAIOPS_PARAMETER##*:}
-EVTMGR_NAMESPACE=$(echo $EVTMGR_NAMESPACE|tr -d '[:space:]')
-
+export WAIOPS_NAMESPACE=$(oc get po -A|grep aimanager-operator |awk '{print$1}')
+export EVTMGR_NAMESPACE=$(oc get po -A|grep noi-operator |awk '{print$1}')
 
 CLUSTER_ROUTE=$(oc get routes console -n openshift-console | tail -n 1 2>&1 ) 
 CLUSTER_FQDN=$( echo $CLUSTER_ROUTE | awk '{print $2}')

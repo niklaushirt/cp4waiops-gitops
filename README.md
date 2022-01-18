@@ -28,6 +28,7 @@ Please drop me a note on Slack or by mail nikh@ch.ibm.com if you find glitches o
 # Installation
 ---------------------------------------------------------------
 
+1. [Easy Install](#0-easy-install)
 1. [Prerequisites](#1-prerequisites)
 1. [OpenShift GitOps Install](#2-openshift-gitops-install)
 1. [AI Manager Base Install](#3-cp4waiops-base-install)
@@ -154,6 +155,43 @@ If you want to modify and/or play around with the values you just have to:
 
 
 ---------------------------------------------------------------
+# 0. Easy Install
+---------------------------------------------------------------
+
+I have provided a tool to very easily install the different components.
+
+Just launch:
+
+```bash
+./00_install.sh
+```
+
+## First launch
+For a vanilla install you will see this:
+
+![K8s CNI](./doc/pics/tool0.png)
+
+Select
+
+- Option 1 to prepare the OpenShift GitOps Installation
+- Option 2 or 3 depending on your environment
+
+<div style="page-break-after: always;"></div>
+
+## Installing
+
+Once OpenShift GitOps has been installed you will see this:
+
+![K8s CNI](./doc/pics/tool1.png)
+
+Select the options you want to install.
+The ones marked with ✅ have already been detected as being present in the cluster.
+
+
+
+<div style="page-break-after: always;"></div>
+
+---------------------------------------------------------------
 # 1. Prerequisites
 ---------------------------------------------------------------
 
@@ -175,6 +213,8 @@ You might get away with less if you don't install some components (Humio, Turbon
 
 You need the following tools installed in order to follow through this guide:
 
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install)
+
 - ansible
 - oc (4.7 or greater)
 - jq
@@ -186,10 +226,13 @@ You need the following tools installed in order to follow through this guide:
 <div style="page-break-after: always;"></div>
 
 ### 1.2.1 On Mac - Automated (preferred)
-You can either run:
+
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 2**
+
+Or just run:
 
 ```
-sudo ./02_install_prerequisites_mac.sh
+sudo ./argocd/02_install_prerequisites_mac.sh
 ```
 
 #### 1.2.1.1 On Mac - Manual
@@ -247,11 +290,12 @@ rm README.md
 ### 1.2.2 On Ubuntu Linux - Automated (preferred) 
 
 
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 3**
 
-For Ubuntu you can either run (for other distros you're on your own, sorry):
+Or for Ubuntu you can run (for other distros you're on your own, sorry):
 
 ```
-sudo ./02_install_prerequisites_ubuntu.sh
+sudo ./argocd/03_install_prerequisites_ubuntu.sh
 ```
 
 
@@ -350,10 +394,12 @@ Simply click on the green `CODE` button and select `Download Zip` to download th
 
 ## 2.1 Install OpenShift GitOps
 
-Just run the following:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 1**
+
+Or just run the following:
 
 ```bash
-01_install_gitops.sh
+./argocd/01_install_gitops.sh
 ```
 
 ## 2.2 Accessing OpenShift GitOps
@@ -476,14 +522,16 @@ eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp
 
 ### 3.1.3 🚀 Start installation
 
-Just run:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 11**
+
+Or just run:
 
 ```bash
-./10_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./argocd/11_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./10_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./argocd/11_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:
@@ -579,14 +627,16 @@ spec:
 
 ### 3.2.2 🚀 Start installation
 
-Just run:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 12**
+
+Or just run:
 
 ```bash
-./11_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./argocd/12_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./11_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./argocd/12_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:
@@ -635,10 +685,12 @@ aiManagerNamespace: cp4waiops
 
 ### 3.3.2 🚀 Start installation
 
-Just run:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 32**
+
+Or just run:
 
 ```bash
-./15_install_ldap.sh
+./argocd/32_install_ldap.sh
 ```
 
 This will install:
@@ -694,10 +746,12 @@ You can check/modify those in the OpenLDAPAdmin interface that you can access wi
 
 ### 3.4.1 🚀 Start installation
 
-Just run:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 33**
+
+Or just run:
 
 ```bash
-./20_addons_robotshop.sh
+./argocd/33_addons_robotshop.sh
 ```
 
 This will install:
@@ -795,7 +849,7 @@ Do this for your applications (RobotShop by default)
 Launch the following:
 
 ```bash
-./60_load_robotshop_topology_aimanager.sh
+./tools/60_load_robotshop_topology_aimanager.sh
 ```
 
 This will create:
@@ -897,7 +951,7 @@ or use the script that does it automatically
 Run the following scripts to inject training data:
 	
 ```bash
-./50_load_robotshop_data.sh	
+./tools/50_load_robotshop_data.sh	
 ```
 
 This takes some time (20-60 minutes depending on your Internet speed).
@@ -1547,7 +1601,7 @@ This is basically the same as for AI Manager as we need two separate instances o
 Launch the following:
 
 ```bash
-./61_load_robotshop_topology_noi.sh
+./tools/61_load_robotshop_topology_noi.sh
 ```
 
 This will create:
@@ -1821,10 +1875,14 @@ You can install Turbonomic into the same cluster as CP4WAIOPS.
 
 **❗ You need a license in order to use Turbonomic.**
 
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 21**
+
+Or just:
+
 1. Launch
 
 	```bash
-	./21_addons_turbonomic.sh
+	./argocd/21_addons_turbonomic.sh
 	```
 2. Wait for the pods to come up
 3. Open Turbonomic
@@ -1888,7 +1946,9 @@ You can easily install ELK into the same cluster as CP4WAIOPS.
 
 ## 15.1 Install Humio and Fluentbit
 
-Just launch the following and this should automatically install:
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 22**
+
+Or just launch the following and this should automatically install:
 
 * Kafka
 * Zookeeper
@@ -1899,13 +1959,13 @@ Just launch the following and this should automatically install:
 
 
 ```bash
-./22_addons_humio.sh -l <HUMIO_LICENSE>
+./argocd/22_addons_humio.sh -l <HUMIO_LICENSE>
 ```
 
 Example:
 
 ```bash
-./22_addons_humio.sh -l eyJhbGciOiJFUzI1NiJyyyyyyyyyyyyyyyyyyyyQCtxzXF5wLjWCkcyOcbQ5mqU9yow_UoqtnWBOS_Z9DgLgIhALCMDC00HunDMk62S6GzDHIm9rYtZ0aWmdRTrr_kesMa
+./argocd/22_addons_humio.sh -l eyJhbGciOiJFUzI1NiJyyyyyyyyyyyyyyyyyyyyQCtxzXF5wLjWCkcyOcbQ5mqU9yow_UoqtnWBOS_Z9DgLgIhALCMDC00HunDMk62S6GzDHIm9rYtZ0aWmdRTrr_kesMa
 ```
 
 
@@ -2128,11 +2188,14 @@ You can easily install AWX (OpenSource Ansible Tower) into the same cluster as C
 
 ## 17.1. Install AWX
 
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 23**
+
+Or just do:
 
 1. Launch
 
 	```bash
-	./23_addons_awx.sh	
+	./argocd/23_addons_awx.sh	
 	```
 	
 2. Wait for the pods to come up

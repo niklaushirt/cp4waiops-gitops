@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ratings-test
+  namespace: robot-shop
   labels:
     app: robot-shop
     version: v2

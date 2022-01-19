@@ -3,6 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: robotshop-gateway
+  namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "300"
 spec:

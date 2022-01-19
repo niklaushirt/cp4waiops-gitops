@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 000-robot-shop-patch
+  name: 010-robot-shop-patch
   namespace: robot-shop
   annotations:
     argocd.argoproj.io/sync-wave: "10"

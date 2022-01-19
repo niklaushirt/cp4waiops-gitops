@@ -1,18 +1,25 @@
-
+{{- if .Values.core.installAIManager }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: humio
+  name: cp4waiops-aimanager
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: humio-logging
+    namespace: cp4waiops
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/humio
+    path: charts/1_cp4waiops/3.2/aimanager
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: spec.dockerPassword
+          value: >-
+            <PULL_TOKEN>
   project: default
   syncPolicy:
     automated:
@@ -21,5 +28,7 @@ spec:
     syncOptions:
       #- Validate=false
       - SkipDryRunOnMissingResource=true
-      - FailOnSharedResource=true
-      - CreateNamespace=true
+      #- FailOnSharedResource=true
+      #- CreateNamespace=true
+
+{{- end }}

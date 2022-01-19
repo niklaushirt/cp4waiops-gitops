@@ -1,24 +1,18 @@
+{{- if .Values.addons.installRobotShop }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cp4waiops-eventmanager
+  name: robot-shop
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: cp4waiops-evtmgr
+    namespace: robot-shop
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/cp4waiops/3.2/eventmanager
+    path: charts/2_addons/robotshop
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
-      parameters:
-        - name: spec.dockerPassword
-          value: >-
-            <PULL_TOKEN>
   project: default
   syncPolicy:
     automated:
@@ -28,5 +22,5 @@ spec:
       #- Validate=false
       - SkipDryRunOnMissingResource=true
       #- FailOnSharedResource=true
-      #- CreateNamespace=true
-
+      - CreateNamespace=true
+{{- end }}

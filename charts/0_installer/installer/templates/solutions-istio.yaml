@@ -1,16 +1,16 @@
-
+{{- if .Values.solutions.installIstio }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: waiops-demo-ui
+  name: istio
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: cp4waiops
+    namespace: istio-system
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/waiops-demo-ui
+    path: charts/2_addons/istio
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default
@@ -19,7 +19,8 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      #- Validate=false
+      - Validate=false
       - SkipDryRunOnMissingResource=true
-      #- FailOnSharedResource=true
+      - FailOnSharedResource=true
       - CreateNamespace=true
+{{- end }}

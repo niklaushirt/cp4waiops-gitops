@@ -1,15 +1,16 @@
+{{- if .Values.solutions.installAWX }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ldap
+  name: awx
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: awx
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/ldap
+    path: charts/2_addons/awx
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default
@@ -20,5 +21,6 @@ spec:
     syncOptions:
       #- Validate=false
       - SkipDryRunOnMissingResource=true
-      #- FailOnSharedResource=true
-      #- CreateNamespace=true
+      - FailOnSharedResource=true
+      - CreateNamespace=true
+{{- end }}

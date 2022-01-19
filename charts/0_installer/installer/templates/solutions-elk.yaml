@@ -1,16 +1,16 @@
-
+{{- if .Values.solutions.installELK }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio
+  name: elk
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: istio-system
+    namespace: openshift-logging
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/istio
+    path: charts/2_addons/elk
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default
@@ -18,8 +18,13 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
-      - Validate=false
+      #- Validate=false
       - SkipDryRunOnMissingResource=true
       - FailOnSharedResource=true
-      - CreateNamespace=true
+      #- CreateNamespace=true
+{{- end }}

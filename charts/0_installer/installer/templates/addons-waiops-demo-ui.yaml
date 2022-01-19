@@ -1,16 +1,16 @@
-
+{{- if .Values.addons.installCP4WAIOPSDemoUI }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: elk
+  name: waiops-demo-ui
   namespace: openshift-gitops
 spec:
   destination:
     name: ''
-    namespace: openshift-logging
+    namespace: cp4waiops
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/elk
+    path: charts/2_addons/waiops-demo-ui
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default
@@ -18,12 +18,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       #- Validate=false
       - SkipDryRunOnMissingResource=true
-      - FailOnSharedResource=true
-      #- CreateNamespace=true
+      #- FailOnSharedResource=true
+      - CreateNamespace=true
+{{- end }}

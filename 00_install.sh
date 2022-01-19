@@ -64,24 +64,28 @@ echo ""
 echo ""
 echo ""
 
-echo "  Initializing......"
-export ARGOCD_NAMESPACE=$(oc get po -n openshift-gitops|grep openshift-gitops-server |awk '{print$1}')
-echo "  ......."
+echo "  Initializing"
+export ARGOCD_NAMESPACE=$(oc get po -n openshift-gitops --ignore-not-found|grep openshift-gitops-server |awk '{print$1}')
+echo "  ........."
 export WAIOPS_NAMESPACE=$(oc get po -A|grep aimanager-operator |awk '{print$1}')
-echo "  o....."
+echo "  o........"
 export EVTMGR_NAMESPACE=$(oc get po -A|grep noi-operator |awk '{print$1}')
-echo "  oo....."
-export RS_NAMESPACE=$(oc get ns robot-shop |awk '{print$1}')
-echo "  ooo...."
-export TURBO_NAMESPACE=$(oc get ns turbonomic |awk '{print$1}')
-echo "  oooo..."
-export AWX_NAMESPACE=$(oc get ns awx |awk '{print$1}')
-echo "  ooooo.."
-export LDAP_NAMESPACE=$(oc get po -n default| grep ldap |awk '{print$1}')
-echo "  oooooo."
+echo "  oo........"
+export RS_NAMESPACE=$(oc get ns robot-shop  --ignore-not-found|awk '{print$1}')
+echo "  ooo......."
+export TURBO_NAMESPACE=$(oc get ns turbonomic  --ignore-not-found|awk '{print$1}')
+echo "  oooo......"
+export AWX_NAMESPACE=$(oc get ns awx  --ignore-not-found|awk '{print$1}')
+echo "  ooooo....."
+export LDAP_NAMESPACE=$(oc get po -n default --ignore-not-found| grep ldap |awk '{print$1}')
+echo "  oooooo...."
 export DEMO_NAMESPACE=$(oc get po -A|grep demo-ui- |awk '{print$1}')
-echo "  oooooo"
-export HUMIO_NAMESPACE=$(oc get ns humio-logging |awk '{print$1}')
+echo "  ooooooo.."
+export ELK_NAMESPACE=$(oc get ns openshift-logging  --ignore-not-found|awk '{print$1}')
+echo "  oooooooo."
+export ISTIO_NAMESPACE=$(oc get ns istio-logging  --ignore-not-found|awk '{print$1}')
+echo "  ooooooooo"
+export HUMIO_NAMESPACE=$(oc get ns humio-logging  --ignore-not-found|awk '{print$1}')
 echo "  ✅ Done"
 
 
@@ -285,6 +289,32 @@ menu_INSTALL_AWX () {
 
 
 
+
+menu_INSTALL_ELK () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install OpenShift Logging" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=ELKInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
+      argocd app sync installer
+}
+
+
+
+menu_INSTALL_ISTIO () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install OpenShift Mesh" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=IstioInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
+      argocd app sync installer
+}
 
 
 
@@ -494,16 +524,21 @@ if [[ $ARGOCD_NAMESPACE =~ "openshift-gitops" ]]; then
             echo "    	✅  - Install AWX                                             "
       fi
 
-      # if [[  $EVTMGR_NAMESPACE == "" ]]; then
-      #       echo "    	24  - Install OpenShift Mesh                                  - Install OpenShift Mesh (Istio)"
-      # else
-      #       echo "    	✅  - Install OpenShift Mesh                                  "
-      # fi
+      if [[  $ISTIO_NAMESPACE == "" ]]; then
+            echo "    	24  - Install OpenShift Mesh                                  - Install OpenShift Mesh (Istio)"
+       else
+            echo "    	✅  - Install OpenShift Mesh                                  "
+       fi
 
 
 
+      if [[  $ISTIO_NAMESPACE == "" ]]; then
+            echo "    	25  - Install OpenShift Logging                               - Install OpenShift Logging (ELK)"
+       else
+            echo "    	✅  - Install OpenShift Logging                                 "
+       fi
 
-      #       echo "    	25  - Install OpenShift Logging                               - Install OpenShift Logging (ELK)"
+
       echo "  "
       echo "  📛 CP4WAIOPS Addons"
 

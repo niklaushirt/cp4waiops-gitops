@@ -19,7 +19,7 @@ spec:
       parameters:
         - name: humioLicense
           value: >-
-            {{- if .Values.solutions.HumioLicense }}
+            {{.Values.solutions.HumioLicense }}
   project: default
   syncPolicy:
     automated:

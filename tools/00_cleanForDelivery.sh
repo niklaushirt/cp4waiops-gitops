@@ -42,6 +42,20 @@ rm -f ./demo/iaf-system-backup.yaml
 rm -f ./external-tls-secret.yaml
 rm -f ./iaf-system-backup.yaml
 
+export actBranch=$(git branch | tr -d '* ')
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+echo "    🚀  Update Branch to $actBranch"
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+
+cd ./charts/0_installer/installer/templates
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" *
+cd -
+
+cd ./argocd/applications/
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" *
+cd -
+
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3_installer.yaml
 
 
 

@@ -106,9 +106,21 @@ while : ; do
 done
 
 echo "  "
+export actBranch=$(git branch | tr -d '* ')
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+echo "    🚀  Update Branch to $actBranch"
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+cp ./argocd/install/3_installer.yaml /tmp/3_installer.yaml
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" /tmp/3_installer.yaml
+gsed -i "s/value: main/value: $actBranch/g" /tmp/3_installer.yaml
+
+cat /tmp/3_installer.yaml
+
+echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Installer Application in ArgoCD"
-oc apply -n openshift-gitops -f ./argocd/install/3_installer.yaml
+exit 1
+oc apply -n openshift-gitops -f /tmp/3_installer.yaml
 
 
 echo "  "

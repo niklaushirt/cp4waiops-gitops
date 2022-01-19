@@ -16,3 +16,4 @@ solutions:
   AWXInstall: false
   IstioInstall: false
   ELKInstall: false
+activeBranch: main

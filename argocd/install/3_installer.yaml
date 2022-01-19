@@ -8,11 +8,13 @@ spec:
   source:
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     path: charts/0_installer/installer
-    targetRevision: HEAD
+    targetRevision: main
     helm:
       parameters:
         - name: version
           value: '1.0'
+        - name: activeBranch
+          value: main
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default

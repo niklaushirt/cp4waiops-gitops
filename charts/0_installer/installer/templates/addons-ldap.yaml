@@ -12,7 +12,7 @@ spec:
   source:
     path: charts/2_addons/ldap
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
-    targetRevision: HEAD
+    targetRevision: {{ .Values.activeBranch }}
   project: default
   syncPolicy:
     automated:
@@ -24,3 +24,5 @@ spec:
       #- FailOnSharedResource=true
       #- CreateNamespace=true
 {{- end }}
+
+

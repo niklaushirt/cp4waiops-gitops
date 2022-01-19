@@ -336,6 +336,31 @@ menu_INSTALL_HUMIO () {
 }
 
 
+menu_LOGIN_ARGO(){
+
+      export ARGOCD_URL=$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})
+      export ARGOCD_USER=admin
+      export ARGOCD_PWD=$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀 Logging In" 
+      echo "--------------------------------------------------------------------------------------------"
+      argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
+      
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀 ArgoCD Applications" 
+      echo "--------------------------------------------------------------------------------------------"
+      argocd app list
+
+      argocd repo add https://github.com/niklaushirt/cp4waiops-gitops --name cp4waiops-repo
+
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀 ArgoCD Repos" 
+      echo "--------------------------------------------------------------------------------------------"
+      argocd repo list
+
+}
+
 
 
 incorrect_selection() {
@@ -385,9 +410,6 @@ if [[  $ARGOCD_NAMESPACE =~ "openshift-gitops" ]]; then
       echo "    🔐 Password:   $ARGOCD_PWD"
       echo "  "
 
-      argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
-      argocd app list
-      argocd repo add https://github.com/niklaushirt/cp4waiops-gitops --name cp4waiops-repo
 fi
 
 echo "  "
@@ -482,6 +504,14 @@ if [[ $ARGOCD_NAMESPACE =~ "openshift-gitops" ]]; then
       else
             echo "    	✅  - Install RobotShop                                       "
       fi
+
+            #       echo "    	25  - Install OpenShift Logging                               - Install OpenShift Logging (ELK)"
+      echo "  "
+      echo "  🔎 Openshift Gitops/ArgoCD"
+      echo "    	41  - Login to ArgoCD                                        "
+      echo "    	42  - ArgoCD List Applications                                     "
+
+
 else
 echo "***************************************************************************************************************************************************"
 
@@ -515,6 +545,8 @@ fi
     32 ) clear ; menu_INSTALL_LDAP  ;;
     33 ) clear ; menu_INSTALL_ROBOTSHOP  ;;
 
+    41 ) clear ; menu_LOGIN_ARGO  ;;
+    42 ) clear ; menu_APPS_ARGO  ;;
 
     0 ) clear ; exit ;;
     * ) clear ; incorrect_selection  ;;

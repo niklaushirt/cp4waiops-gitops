@@ -36,6 +36,6 @@ spec:
                 fi
               done
           
-      serviceAccountName: openshift-argocd-admin-ai
+      serviceAccountName: t8c-operator
       restartPolicy: Never
   backoffLimit: 4

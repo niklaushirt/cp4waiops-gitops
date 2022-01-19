@@ -113,12 +113,28 @@ oc apply -n openshift-gitops -f ./argocd/install/3_installer.yaml
 
 echo "  "
 echo "***************************************************************************************************************************************************"
+echo "  📥 Create Installer GitRepository in ArgoCD"
+export ARGOCD_URL=$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})
+export ARGOCD_USER=admin
+export ARGOCD_PWD=$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
+argocd repo add https://github.com/niklaushirt/cp4waiops-gitops --name cp4waiops-repo
+
+echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
+echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
+echo "    🚀 Connect to OpenShift GitOps to check your deployments"
+echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
+echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
+echo "    "
+echo "  "
+
+echo "  "
+echo "***************************************************************************************************************************************************"
 echo "  🔐 Login Credentials"
+echo "        🌏 URL:      https://$ARGOCD_URL"
 echo "  "
-echo "            🌏 URL:      https://$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})"
-echo "  "
-echo "            🧔 User:       admin"
-echo "            🔐 Password:   "$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+echo "        🧔 User:       $ARGOCD_USER"
+echo "        🔐 Password:   $ARGOCD_PWD"
 echo "  "
 
 

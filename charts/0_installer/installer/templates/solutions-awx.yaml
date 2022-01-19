@@ -1,4 +1,4 @@
-{{- if .Values.solutions.installAWX }}
+{{- if .Values.solutions.AWXInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

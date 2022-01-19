@@ -1,4 +1,4 @@
-{{- if .Values.core.installEventManager }}
+{{- if .Values.core.eventManager.eventManagerInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -19,7 +19,7 @@ spec:
       parameters:
         - name: spec.dockerPassword
           value: >-
-            <PULL_TOKEN>
+            {{ .Values.core.eventManager.eventManagerPullToken }}
   project: default
   syncPolicy:
     automated:

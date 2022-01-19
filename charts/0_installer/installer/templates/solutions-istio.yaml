@@ -1,4 +1,4 @@
-{{- if .Values.solutions.installIstio }}
+{{- if .Values.solutions.IstioInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

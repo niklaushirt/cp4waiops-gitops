@@ -1,4 +1,4 @@
-{{- if .Values.core.installAIManager }}
+{{- if .Values.core.aiManager.ManagerInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -19,7 +19,7 @@ spec:
       parameters:
         - name: spec.dockerPassword
           value: >-
-            <PULL_TOKEN>
+            {{ .Values.core.aiManager.aiManagerPullToken }}
   project: default
   syncPolicy:
     automated:

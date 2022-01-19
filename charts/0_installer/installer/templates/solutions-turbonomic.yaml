@@ -1,4 +1,4 @@
-{{- if .Values.solutions.installTurbonomic }}
+{{- if .Values.solutions.TurbonomicInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

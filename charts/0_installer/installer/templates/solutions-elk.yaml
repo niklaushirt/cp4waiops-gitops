@@ -1,4 +1,4 @@
-{{- if .Values.solutions.installELK }}
+{{- if .Values.solutions.ELKInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

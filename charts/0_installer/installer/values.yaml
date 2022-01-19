@@ -1,13 +1,18 @@
 core:
-  installAIManager: false
-  installEventManager: false
+  aiManager:
+    aiManagerInstall: false
+    aiManagerPullToken: <PULL_TOKEN>
+  eventManager:
+    eventManagerInstall: false
+    eventManagerPullToken: false
 addons:
-  installLDAP: false
-  installRobotShop: false  
-  installCP4WAIOPSDemoUI: false
+  LDAPInstall: false
+  RobotShopInstall: false  
+  CP4WAIOPSDemoUIInstall: false
 solutions:
-  installTurbonomic: false
-  installHumio: false
-  installAWX: false
-  installIstio: false
-  installELK: false
+  TurbonomicInstall: false
+  HumioInstall: false
+  HumioLicense: <PULL_TOKEN>
+  AWXInstall: false
+  IstioInstall: false
+  ELKInstall: false

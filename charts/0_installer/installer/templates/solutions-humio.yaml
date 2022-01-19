@@ -1,4 +1,4 @@
-{{- if .Values.solutions.installHumio }}
+{{- if .Values.solutions.HumioInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -13,6 +13,13 @@ spec:
     path: charts/2_addons/humio
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: humioLicense
+          value: >-
+            {{- if .Values.solutions.HumioLicense }}
   project: default
   syncPolicy:
     automated:

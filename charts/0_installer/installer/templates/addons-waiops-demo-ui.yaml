@@ -1,4 +1,4 @@
-{{- if .Values.addons.installCP4WAIOPSDemoUI }}
+{{- if .Values.addons.CP4WAIOPSDemoUIInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

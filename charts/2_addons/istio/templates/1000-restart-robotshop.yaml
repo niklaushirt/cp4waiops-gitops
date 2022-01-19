@@ -26,7 +26,6 @@ spec:
             - |
               set -x
 
-              oc delete pods -n robot-shop --all   
               ISTIO_INGRESSGATEWAY=$(oc get route -n istio-system istio-ingressgateway -o jsonpath={.spec.host})
               echo "http://$ISTIO_INGRESSGATEWAY"
 
@@ -60,11 +59,11 @@ spec:
                     - name: load
                       env:
                         - name: HOST
-                          value: $ISTIO_INGRESSGATEWAY
+                          value: http://$ISTIO_INGRESSGATEWAY
                         - name: NUM_CLIENTS
                           value: "15"
                         - name: SILENT
-                          value: "1"
+                          value: "0"
                         - name: ERROR
                           value: "0"
                       image: robotshop/rs-load:latest
@@ -92,7 +91,8 @@ spec:
                 type: ClusterIP
                 sessionAffinity: None
               EOF
-              
+              oc delete pods -n robot-shop --all   
+
                      
       serviceAccountName: openshift-argocd-admin-ai
       restartPolicy: Never

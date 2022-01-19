@@ -27,7 +27,7 @@ spec:
       - name: load
         env:
           - name: HOST
-            value: {{ ISTIO_INGRESSGATEWAY }}
+            value: <ISTIO_INGRESSGATEWAY>
           - name: NUM_CLIENTS
             value: "15"
           - name: SILENT

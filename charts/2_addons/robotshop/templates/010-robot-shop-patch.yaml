@@ -5,7 +5,7 @@ metadata:
   name: 000-robot-shop-patch
   namespace: robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   template:
     spec:
@@ -29,6 +29,6 @@ spec:
               oc adm policy add-scc-to-user privileged -n robot-shop -z default                                 || true
               oc create clusterrolebinding default-robotinfo2-admin --clusterrole=cluster-admin --serviceaccount=robot-shop:default || true
 
-             
+      serviceAccountName: openshift-argocd-admin-ai           
       restartPolicy: Never
   backoffLimit: 4

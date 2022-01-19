@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 999-wait-running-turbonomic
+  name: 998-wait-running-turbonomic
   annotations:
-    argocd.argoproj.io/sync-wave: "999"
+    argocd.argoproj.io/sync-wave: "998"
     argocd.argoproj.io/hook: PostSync
   namespace: awx
 spec:

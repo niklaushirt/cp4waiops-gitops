@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 999-wait-running-aimanager
+  name: 998-wait-running-robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "999"
+    argocd.argoproj.io/sync-wave: "998"
     argocd.argoproj.io/hook: PostSync
-  namespace: {{.Values.spec.aiManager.namespace}}
+  namespace: istio-system
 spec:
   template:
     spec:
@@ -27,8 +27,8 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get pod -n {{.Values.spec.aiManager.namespace}} | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '110' ]]; then
+                READY=$(oc get pod -n istio-system | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '12' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 30
                 else
@@ -38,5 +38,4 @@ spec:
           
 
       restartPolicy: Never
-      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

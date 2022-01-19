@@ -319,11 +319,11 @@ menu_INSTALL_HUMIO () {
             echo ""
 
             echo ""
-            helmValue=LDAPInstall
+            helmValue=HumioInstall
             helmLicense=HumioLicense
             echo "Patching"$helmValue
             oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
-            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'",'$helmLicense':'$TOKEN'}}]'
+            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmLicense'","value":'$TOKEN'}}]'
 
             
 

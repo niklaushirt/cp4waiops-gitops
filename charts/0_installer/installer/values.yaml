@@ -4,7 +4,7 @@ core:
     aiManagerPullToken: <PULL_TOKEN>
   eventManager:
     eventManagerInstall: false
-    eventManagerPullToken: false
+    eventManagerPullToken: <PULL_TOKEN>
 addons:
   LDAPInstall: false
   RobotShopInstall: false  
@@ -12,7 +12,7 @@ addons:
 solutions:
   TurbonomicInstall: false
   HumioInstall: false
-  HumioLicense: <PULL_TOKEN>
+  HumioLicense: <HUMIO_LICENSE>
   AWXInstall: false
   IstioInstall: false
   ELKInstall: false

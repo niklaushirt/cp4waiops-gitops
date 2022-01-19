@@ -1,0 +1,13 @@
+core:
+  installAIManager: false
+  installEventManager: false
+addons:
+  installLDAP: false
+  installRobotShop: false  
+  installCP4WAIOPSDemoUI: false
+solutions:
+  installTurbonomic: false
+  installHumio: false
+  installAWX: false
+  installIstio: false
+  installELK: false

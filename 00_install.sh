@@ -129,23 +129,24 @@ menu_INSTALL_AIMGR () {
       echo ""
       read -p " ❗❓ Are you sure that this is correct? [y,N] " DO_COMM
       if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
-            read -p " ❗❓ Do you want to install demo content (OpenLdap and RobotShop)? [y,N] " DO_COMM
-            if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
-                  echo "   ✅ Ok, continuing with demo content..."
-                  echo ""
-                  echo ""
-
-                  echo ""
-                  ./argocd/11_install_ai_manager.sh -t $TOKEN
-                  ./argocd/32_install_ldap.sh
-                  ./argocd/33_install_robotshop.sh
-            else
+            read -p " ❗❓ Do you want to install demo content (highly recommended - OpenLdap and RobotShop)? [Y,n] " DO_COMM
+            if [[ $DO_COMM == "n" ||  $DO_COMM == "N" ]]; then
                   echo "   ✅ Ok, continuing without demo content..."
                   echo ""
                   echo ""
 
                   echo ""
+                  ./argocd/11_install_ai_manager.sh -t $TOKEN
+                 
+            else
+                  echo "   ✅ Ok, continuing with demo content..."
+                  echo ""
+                  echo ""
+
+                  echo ""
                   ./argocd/11_install_ai_manager.sh -t $TOKEN  
+                  ./argocd/32_install_ldap.sh
+                  ./argocd/33_addons_robotshop.sh
             fi
       else
             echo "    ⚠️  Skipping"

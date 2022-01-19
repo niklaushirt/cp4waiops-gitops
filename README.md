@@ -92,7 +92,7 @@ So please if you have any feedback contact me
 The installations are packaged as Helm Charts.
 They reside in the ./charts directory.
 
-> For example the `./charts/cp4waiops/3.2/aimanager/` directory contains the helm chart for CP4WAIOPS `AI Manager`.
+> For example the `./charts/1_cp4waiops/3.2/aimanager/` directory contains the helm chart for CP4WAIOPS `AI Manager`.
 
 
 ### Openshift GitOps
@@ -429,7 +429,7 @@ In both cases use the login credentials from the install script.
 
 ### 3.1.1 Adapt configuration
 
-If needed, adapt the `./charts/cp4waiops/3.2/aimanager/values.yaml` file with the desired parameters:
+If needed, adapt the `./charts/1_cp4waiops/3.2/aimanager/values.yaml` file with the desired parameters:
 
 
 
@@ -567,7 +567,7 @@ To get the token, see [here](#3.1.2-get-the-installation-token)
 
 ### 3.2.1 Adapt configuration
 
-If needed, adapt the `./charts/cp4waiops/3.2/eventmanager/values.yaml` file with the desired parameters:
+If needed, adapt the `./charts/1_cp4waiops/3.2/eventmanager/values.yaml` file with the desired parameters:
 
 
 
@@ -669,7 +669,7 @@ and check that `Sync Status` and `Sync Result` are OK
 
 ### 3.3.1 Adapt configuration
 
-If needed, adapt the `./charts/addons/ldap/values.yaml` file with the desired parameters:
+If needed, adapt the `./charts/2_addons/ldap/values.yaml` file with the desired parameters:
 
 
 

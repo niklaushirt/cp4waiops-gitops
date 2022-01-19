@@ -13,11 +13,11 @@ spec:
     - destination:
         host: ratings.robot-shop.svc.cluster.local
         subset: production
-      weight: 1
+      weight: 25
     - destination:
         host: ratings.robot-shop.svc.cluster.local
         subset: canary
-      weight: 99
+      weight: 75
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule

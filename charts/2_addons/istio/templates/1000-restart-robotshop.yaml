@@ -91,7 +91,7 @@ spec:
                 type: ClusterIP
                 sessionAffinity: None
               EOF
-              oc delete pods -n robot-shop --all   
+              oc delete pods $(oc get po -n robot-shop|grep -v "2/2"|awk '{print$1}') -n robot-shop
 
                      
       serviceAccountName: openshift-argocd-admin-ai

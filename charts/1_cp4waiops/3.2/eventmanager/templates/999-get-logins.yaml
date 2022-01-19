@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "999"
     argocd.argoproj.io/hook: PostSync
-  namespace: awx
+  namespace: {{.Values.spec.eventManager.namespace}}
 spec:
   template:
     spec:

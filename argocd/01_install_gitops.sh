@@ -105,6 +105,10 @@ while : ; do
     fi
 done
 
+echo "  "
+echo "***************************************************************************************************************************************************"
+echo "  📥 Create Installer Application in ArgoCD"
+oc apply -n openshift-gitops -f ./argocd/install/3_installer.yaml
 
 
 echo "  "

@@ -136,7 +136,8 @@ menu_INSTALL_AIMGR () {
                   echo ""
 
                   echo ""
-                  ./argocd/11_install_ai_manager.sh -t $TOKEN
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.aiManager.aiManagerInstall","value":"true"}}]'
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.aiManager.aiManagerPullToken","value":"'$TOKEN'"}}]'
                  
             else
                   echo "   ✅ Ok, continuing with demo content..."
@@ -144,9 +145,12 @@ menu_INSTALL_AIMGR () {
                   echo ""
 
                   echo ""
-                  ./argocd/11_install_ai_manager.sh -t $TOKEN  
-                  ./argocd/32_install_ldap.sh
-                  ./argocd/33_addons_robotshop.sh
+
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.aiManager.aiManagerInstall","value":"true"}}]'
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.aiManager.aiManagerPullToken","value":"'$TOKEN'"}}]'
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"addons.LDAPInstall","value":"true"}}]'
+                  oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"addons.RobotShopInstall","value":"true"}}]'
+
             fi
       else
             echo "    ⚠️  Skipping"
@@ -198,7 +202,8 @@ menu_INSTALL_EVTMGR () {
             echo ""
 
             echo ""
-            ./argocd/12_install_event_manager.sh -t $TOKEN
+            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.eventManager.eventManagerInstall","value":"true"}}]'
+            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"core.eventManager.eventManagerPullToken","value":"'$TOKEN'"}}]'
 
       else
             echo "    ⚠️  Skipping"
@@ -207,6 +212,70 @@ menu_INSTALL_EVTMGR () {
             echo  ""
       fi
 }
+
+
+
+
+
+menu_INSTALL_AIOPSDEMO () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install CP4WAIOPSDemoUI" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=CP4WAIOPSDemoUIInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"addons.'$helmValue'","value":"true"}}]'
+}
+
+
+menu_INSTALL_ROBOTSHOP () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install RobotShop" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=RobotShopInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"addons.'$helmValue'","value":"true"}}]'
+}
+
+
+menu_INSTALL_LDAP () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install LDAP" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=LDAPInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"addons.'$helmValue'","value":"true"}}]'
+}
+
+menu_INSTALL_TURBO () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install Turbonomic" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=TurbonomicInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
+}
+
+
+menu_INSTALL_AWX () {
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀  Install AWX" 
+      echo "--------------------------------------------------------------------------------------------"
+      echo ""
+
+      helmValue=AWXInstall
+      echo "Patching"$helmValue
+      oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
+}
+
+
 
 
 
@@ -250,7 +319,13 @@ menu_INSTALL_HUMIO () {
             echo ""
 
             echo ""
-            ./argocd/22_addons_humio.sh -l $TOKEN
+            helmValue=LDAPInstall
+            helmLicense=HumioLicense
+            echo "Patching"$helmValue
+            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'","value":"true"}}]'
+            oc patch applications.argoproj.io -n openshift-gitops installer --type=json -p='[{"op": "add", "path": "/spec/source/helm/parameters/-", "value":{"name":"solutions.'$helmValue'",'$helmLicense':'$TOKEN'}}]'
+
+            
 
       else
             echo "    ⚠️  Skipping"
@@ -259,6 +334,8 @@ menu_INSTALL_HUMIO () {
             echo  ""
       fi
 }
+
+
 
 
 incorrect_selection() {
@@ -427,17 +504,16 @@ fi
     3 ) clear ; ./argocd/03_install_prerequisites_ubuntu.sh  ;;
     11 ) clear ; menu_INSTALL_AIMGR  ;;
     12 ) clear ; menu_INSTALL_EVTMGR  ;;
-    21 ) clear ; ./argocd/21_addons_turbonomic.sh  ;;
+    21 ) clear ; menu_INSTALL_TURBO  ;;
     22 ) clear ; menu_INSTALL_HUMIO  ;;
-    23 ) clear ; ./argocd/23_addons_awx.sh  ;;
-    24 ) clear ; ./argocd/24_addons_istio.sh  ;;
-    25 ) clear ; ./argocd/25_addons_elk.sh  ;;
-    28 ) clear ; menu_enable_zen_traffic  ;;
+    23 ) clear ; menu_INSTALL_AWX  ;;
+    #24 ) clear ; ./argocd/24_addons_istio.sh  ;;
+    #25 ) clear ; ./argocd/25_addons_elk.sh  ;;
 
 
-    31 ) clear ; ./argocd/31_aiops-demo-ui.sh  ;;
-    32 ) clear ; ./argocd/32_install_ldap.sh  ;;
-    33 ) clear ; ./argocd/33_addons_robotshop.sh  ;;
+    31 ) clear ; menu_INSTALL_AIOPSDEMO  ;;
+    32 ) clear ; menu_INSTALL_TLDAP  ;;
+    33 ) clear ; menu_INSTALL_ROBOTSHOP  ;;
 
 
     0 ) clear ; exit ;;

@@ -28,7 +28,7 @@ spec:
 
               while : ; do
                 READY=$(oc get pod -n turbonomic | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '10' ]]; then
+                if [[  $READY  -lt '57' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 5
                 else

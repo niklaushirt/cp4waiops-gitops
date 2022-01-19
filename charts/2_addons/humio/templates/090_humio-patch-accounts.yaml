@@ -32,5 +32,5 @@ spec:
 
 
       restartPolicy: Never
-      serviceAccountName: default
+      serviceAccountName: humio-operator
   backoffLimit: 4

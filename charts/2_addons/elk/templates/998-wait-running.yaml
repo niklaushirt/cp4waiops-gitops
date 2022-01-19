@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 998-wait-running-robot-shop
+  name: 998-wait-running-elk
   annotations:
     argocd.argoproj.io/sync-wave: "998"
     argocd.argoproj.io/hook: PostSync
@@ -36,6 +36,6 @@ spec:
                 fi
               done
           
-
+      serviceAccountName: cluster-logging-operator
       restartPolicy: Never
   backoffLimit: 4

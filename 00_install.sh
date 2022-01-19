@@ -70,15 +70,15 @@ echo "  ........."
 export WAIOPS_NAMESPACE=$(oc get po -A|grep aimanager-operator |awk '{print$1}')
 echo "  o........"
 export EVTMGR_NAMESPACE=$(oc get po -A|grep noi-operator |awk '{print$1}')
-echo "  oo........"
+echo "  oo......."
 export RS_NAMESPACE=$(oc get ns robot-shop  --ignore-not-found|awk '{print$1}')
-echo "  ooo......."
+echo "  ooo......"
 export TURBO_NAMESPACE=$(oc get ns turbonomic  --ignore-not-found|awk '{print$1}')
-echo "  oooo......"
+echo "  oooo....."
 export AWX_NAMESPACE=$(oc get ns awx  --ignore-not-found|awk '{print$1}')
-echo "  ooooo....."
+echo "  ooooo...."
 export LDAP_NAMESPACE=$(oc get po -n default --ignore-not-found| grep ldap |awk '{print$1}')
-echo "  oooooo...."
+echo "  oooooo..."
 export DEMO_NAMESPACE=$(oc get po -A|grep demo-ui- |awk '{print$1}')
 echo "  ooooooo.."
 export ELK_NAMESPACE=$(oc get ns openshift-logging  --ignore-not-found|awk '{print$1}')
@@ -87,8 +87,6 @@ export ISTIO_NAMESPACE=$(oc get ns istio-logging  --ignore-not-found|awk '{print
 echo "  ooooooooo"
 export HUMIO_NAMESPACE=$(oc get ns humio-logging  --ignore-not-found|awk '{print$1}')
 echo "  ✅ Done"
-
-
 
 
 
@@ -594,8 +592,8 @@ fi
     21 ) clear ; menu_INSTALL_TURBO  ;;
     22 ) clear ; menu_INSTALL_HUMIO  ;;
     23 ) clear ; menu_INSTALL_AWX  ;;
-    #24 ) clear ; ./argocd/24_addons_istio.sh  ;;
-    #25 ) clear ; ./argocd/25_addons_elk.sh  ;;
+    24 ) clear ; menu_INSTALL_ISTIO  ;;
+    25 ) clear ; menu_INSTALL_ELK  ;;
 
 
     31 ) clear ; menu_INSTALL_AIOPSDEMO  ;;

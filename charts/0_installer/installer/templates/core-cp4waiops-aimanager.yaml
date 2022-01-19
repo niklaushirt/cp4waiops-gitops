@@ -1,4 +1,4 @@
-{{- if .Valuescore.aiManager.aiManagerInstall }}
+{{- if .Values.core.aiManager.aiManagerInstall }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

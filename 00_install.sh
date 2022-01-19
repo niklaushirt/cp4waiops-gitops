@@ -356,12 +356,26 @@ menu_LOGIN_ARGO(){
       echo "--------------------------------------------------------------------------------------------"
       argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
       
+   
+}
+
+
+menu_APPS_ARGO(){
+
+      export ARGOCD_URL=$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})
+      export ARGOCD_USER=admin
+      export ARGOCD_PWD=$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+
+      echo "--------------------------------------------------------------------------------------------"
+      echo " 🚀 Logging In" 
+      echo "--------------------------------------------------------------------------------------------"
+      argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
+      
       echo "--------------------------------------------------------------------------------------------"
       echo " 🚀 ArgoCD Applications" 
       echo "--------------------------------------------------------------------------------------------"
       argocd app list
 
-      argocd repo add https://github.com/niklaushirt/cp4waiops-gitops --name cp4waiops-repo
 
       echo "--------------------------------------------------------------------------------------------"
       echo " 🚀 ArgoCD Repos" 
@@ -369,8 +383,6 @@ menu_LOGIN_ARGO(){
       argocd repo list
 
 }
-
-
 
 incorrect_selection() {
       echo "--------------------------------------------------------------------------------------------"

@@ -512,7 +512,7 @@ fi
 
 
     31 ) clear ; menu_INSTALL_AIOPSDEMO  ;;
-    32 ) clear ; menu_INSTALL_TLDAP  ;;
+    32 ) clear ; menu_INSTALL_LDAP  ;;
     33 ) clear ; menu_INSTALL_ROBOTSHOP  ;;
 
 

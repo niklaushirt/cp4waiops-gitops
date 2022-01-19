@@ -28,7 +28,7 @@ spec:
 
               while : ; do
                 READY=$(oc get pod -n istio-system | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '5' ]]; then
+                if [[  $READY  -lt '8' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 30
                 else

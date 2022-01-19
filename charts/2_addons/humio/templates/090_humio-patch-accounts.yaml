@@ -5,7 +5,7 @@ metadata:
   name: 100-humio-patch-accounts
   annotations:
     argocd.argoproj.io/sync-wave: "090"
-  namespace: humio-logging
+  namespace: openshift-gitops
 spec:
   template:
     spec:
@@ -32,5 +32,5 @@ spec:
 
 
       restartPolicy: Never
-      serviceAccountName: humio-operator
+      serviceAccountName: openshift-gitops-argocd-application-controller
   backoffLimit: 4

@@ -160,13 +160,25 @@ If you want to modify and/or play around with the values you just have to:
 
 I have provided a tool to very easily install the different components.
 
+## Get the code
+
+Clone the GitHub Repository
+
+
+```
+git clone https://github.com/niklaushirt/cp4waiops-gitops.git --branch 3.2-stable 
+```
+
+
+
+## First launch
+
 Just launch:
 
 ```bash
 ./00_install.sh
 ```
 
-## First launch
 For a vanilla install you will see this:
 
 ![K8s CNI](./doc/pics/tool0.png)
@@ -176,11 +188,19 @@ Select
 - Option 1 to prepare the OpenShift GitOps Installation
 - Option 2 or 3 depending on your environment
 
+The tool quits after OpenShift GitOps has been installed.
+
 <div style="page-break-after: always;"></div>
 
 ## Installing
 
-Once OpenShift GitOps has been installed you will see this:
+Just re-launch:
+
+```bash
+./00_install.sh
+```
+
+If OpenShift GitOps has been correctly installed you will see this:
 
 ![K8s CNI](./doc/pics/tool1.png)
 
@@ -357,24 +377,11 @@ And obviosuly you'll need to download this repository to use the scripts.
 
 
 ```
-git clone https://github.com/niklaushirt/cp4waiops-gitops.git 
+git clone https://github.com/niklaushirt/cp4waiops-gitops.git --branch 3.2-stable 
 ```
 
 You can create your GIT token [here](https://github.ibm.com/settings/tokens).
 
-#### 1.3.1.1 Refresh the code from GitHub
-
-Make sure you have the latest version:
-
-```
-git checkout origin/master -f | git checkout master -f | git pull origin master
-```
-
-Or create an alias for reuse:
-
-```
-alias gitrefresh='git checkout origin/master -f | git checkout master -f | git pull origin master'
-```
 
 ### 1.3.2 Download the GitHub Repository in a ZIP (not preferred)
 

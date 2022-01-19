@@ -119,7 +119,7 @@ cat /tmp/3_installer.yaml
 echo "  "
 echo "***************************************************************************************************************************************************"
 echo "  📥 Create Installer Application in ArgoCD"
-exit 1
+
 oc apply -n openshift-gitops -f /tmp/3_installer.yaml
 
 

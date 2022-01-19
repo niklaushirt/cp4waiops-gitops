@@ -58,21 +58,10 @@ cd -
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3_installer.yaml
 
 
-
-echo "--------------------------------------------------------------------------------------------------------------------------------"
-echo "    🚀  Check for Tokens and Keys"
-echo "--------------------------------------------------------------------------------------------------------------------------------"
-echo "      🔎  Check for OCP URL"
-grep -rnw '.' -e 'OCP_URL:' | grep -v 'DO_NOT_DELIVER'| grep -v 'delivery'|grep -v "README"|grep -v "not_configured"
-echo "      🔎  Check for OCP Token"
-grep -rnw '.' -e 'OCP_TOKEN:' | grep -v 'DO_NOT_DELIVER' | grep -v 'delivery'|grep -v "README"|grep -v "not_configured"
-echo "      🔎  Check for Webhooks"
-grep -rnw '.' -e 'NETCOOL_WEBHOOK_GENERIC=https:' | grep -v 'DO_NOT_DELIVER'
-echo "      🔎  Check for Slack User Token"
-grep -rnw '.' -e 'xoxp' | grep -v 'DO_NOT_DELIVER' |grep -v "must start with xoxp"| grep 'xoxp-*'
-echo "      🔎  Check for Slack Bot Token"
-grep -rnw '.' -e 'xoxb' | grep -v 'DO_NOT_DELIVER' |grep -v "must start with xoxb"| grep 'xoxb-*'
-
-
-git add . && git commit -m "220113" && git push
-
+read -p " ❗❓ do you want to check-in the GitHub branch $actBranch? [y,N] " DO_COMM
+if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
+    echo "   ✅ Ok, checking in..."
+    git add . && git commit -m "220119" && git push
+else
+    echo "    ⚠️  Skipping"
+fi

@@ -292,17 +292,25 @@ echo ""
 
 if [[  $ARGOCD_NAMESPACE =~ "openshift-gitops" ]]; then
 
+      export ARGOCD_URL=$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})
+      export ARGOCD_USER=admin
+      export ARGOCD_PWD=$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+
       echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
       echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
       echo "    🚀 Connect to OpenShift GitOps to check your deployments"
       echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
       echo "    -----------------------------------------------------------------------------------------------------------------------------------------------"
       echo "    "
-      echo "    🌏 URL:      https://$(oc get route -n  openshift-gitops  openshift-gitops-server -o jsonpath={.spec.host})"
+      echo "    🌏 URL:      https://$ARGOCD_URL"
       echo "  "
-      echo "    🧔 User:       admin"
-      echo "    🔐 Password:   "$(oc get secret -n openshift-gitops openshift-gitops-cluster -o "jsonpath={.data['admin\.password']}"| base64 --decode)
+      echo "    🧔 User:       $ARGOCD_USER"
+      echo "    🔐 Password:   $ARGOCD_PWD"
       echo "  "
+
+      argocd login $ARGOCD_URL --insecure --username $ARGOCD_USER --password $ARGOCD_PWD
+      argocd app list
+      argocd repo add https://github.com/niklaushirt/cp4waiops-gitops --name cp4waiops-repo
 fi
 
 echo "  "

@@ -10,7 +10,7 @@ spec:
     namespace: humio-logging
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/humio
+    path: charts/2_addons/humio
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

@@ -10,7 +10,7 @@ spec:
     namespace: istio-system
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/istio
+    path: charts/2_addons/istio
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

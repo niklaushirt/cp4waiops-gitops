@@ -10,7 +10,7 @@ spec:
     namespace: turbonomic
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/addons/turbonomic
+    path: charts/2_addons/turbonomic
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
     targetRevision: HEAD
   project: default

@@ -1,10 +1,10 @@
----
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 100-humio-patch-accounts
+  name: 998-wait-running-humio
   annotations:
-    argocd.argoproj.io/sync-wave: "090"
+    argocd.argoproj.io/sync-wave: "998"
+    argocd.argoproj.io/hook: PostSync
   namespace: humio-logging
 spec:
   template:
@@ -26,11 +26,16 @@ spec:
             - |
               set -x
 
-              oc adm policy add-scc-to-user privileged -n humio-logging -z humio-operator || true
-              oc adm policy add-scc-to-user privileged -n humio-logging -z humiocluster-humio || true
-              oc create clusterrolebinding default-humio-admin --clusterrole=cluster-admin --serviceaccount=humio-logging:default || true
-
-
-      restartPolicy: Never
+              while : ; do
+                READY=$(oc get pod -n humio-logging | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '3' ]]; then
+                  echo 'Deployment not completed yet.'
+                  sleep 30
+                else
+                  break
+                fi
+              done
+          
       serviceAccountName: openshift-argocd-admin-ai
+      restartPolicy: Never
   backoffLimit: 4

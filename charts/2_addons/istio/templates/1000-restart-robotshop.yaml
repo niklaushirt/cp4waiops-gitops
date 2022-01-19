@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 998-wait-running-istio
+  name: 1000-restart-robotshop
   annotations:
     argocd.argoproj.io/sync-wave: "1000"
     argocd.argoproj.io/hook: PostSync

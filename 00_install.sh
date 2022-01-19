@@ -41,6 +41,29 @@ export TEMP_PATH=~/aiops-install
 # ---------------------------------------------------------------------------------------------------------------"
 # ---------------------------------------------------------------------------------------------------------------"
 
+
+
+
+
+
+export CLUSTER_STATUS=$(oc status | grep "In project")
+export CLUSTER_WHOAMI=$(oc whoami)
+
+if [[ ! $CLUSTER_STATUS =~ "In project" ]]; then
+      echo "❌ You are not logged into a Openshift Cluster."
+      echo "❌ Aborting...."
+      exit 1
+else
+      echo "✅ $CLUSTER_STATUS"
+      echo "   as user $CLUSTER_WHOAMI"
+
+fi
+
+echo ""
+echo ""
+echo ""
+echo ""
+
 echo "  Initializing......"
 export ARGOCD_NAMESPACE=$(oc get po -n openshift-gitops|grep openshift-gitops-server |awk '{print$1}')
 echo "  ......."
@@ -106,13 +129,24 @@ menu_INSTALL_AIMGR () {
       echo ""
       read -p " ❗❓ Are you sure that this is correct? [y,N] " DO_COMM
       if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
-            echo "   ✅ Ok, continuing..."
-            echo ""
-            echo ""
+            read -p " ❗❓ Do you want to install demo content (OpenLdap and RobotShop)? [y,N] " DO_COMM
+            if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
+                  echo "   ✅ Ok, continuing with demo content..."
+                  echo ""
+                  echo ""
 
-            echo ""
-            ./argocd/11_install_ai_manager.sh -t $TOKEN
+                  echo ""
+                  ./argocd/11_install_ai_manager.sh -t $TOKEN
+                  ./argocd/32_install_ldap.sh
+                  ./argocd/33_install_robotshop.sh
+            else
+                  echo "   ✅ Ok, continuing without demo content..."
+                  echo ""
+                  echo ""
 
+                  echo ""
+                  ./argocd/11_install_ai_manager.sh -t $TOKEN  
+            fi
       else
             echo "    ⚠️  Skipping"
             echo "--------------------------------------------------------------------------------------------"
@@ -252,6 +286,8 @@ echo " 🚀 CloudPak for Watson AIOPs - INSTALL"
 echo "*****************************************************************************************************************************"
 echo "  "
 echo "  ℹ️  This script provides different options to install CP4WAIOPS demo environments through OpenShift GitOps(ArgoCD)"
+echo ""
+echo ""
 
 if [[  $ARGOCD_NAMESPACE =~ "openshift-gitops" ]]; then
 

@@ -177,7 +177,7 @@ metadata:
   name: openldap-admin
   namespace: default
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "310"
 spec:
   type: NodePort
   ports:

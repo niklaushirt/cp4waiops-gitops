@@ -3,6 +3,6 @@ kind: Namespace
 metadata:
   labels:
     control-plane: controller-manager
-  name: istio-system
+  name: openshift-operators-redhat
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "0"

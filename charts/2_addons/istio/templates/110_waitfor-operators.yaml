@@ -5,7 +5,7 @@ metadata:
   name: 110-waitfor-operators
   annotations:
     argocd.argoproj.io/sync-wave: "110"
-  namespace: humio-logging
+  namespace: istio-system
 spec:
   template:
     spec:
@@ -37,5 +37,5 @@ spec:
               done
 
       restartPolicy: Never
-      serviceAccountName: humio-operator
+      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

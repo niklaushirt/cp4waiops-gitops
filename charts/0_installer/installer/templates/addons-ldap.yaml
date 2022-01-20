@@ -12,7 +12,7 @@ spec:
   source:
     path: charts/2_addons/ldap
     repoURL: 'https://github.com/niklaushirt/cp4waiops-gitops'
-    targetRevision: main
+    targetRevision: 3.2-dev
   project: default
   syncPolicy:
     automated:

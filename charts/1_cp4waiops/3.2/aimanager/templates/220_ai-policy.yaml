@@ -2,10 +2,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 50-argo-cp4waiops-configure-aiops-network-policy
+  name: 220-argo-cp4waiops-configure-aiops-network-policy
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/sync-wave: "50"
+    argocd.argoproj.io/sync-wave: "220"
   namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:

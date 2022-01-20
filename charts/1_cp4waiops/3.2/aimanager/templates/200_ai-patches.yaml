@@ -36,8 +36,7 @@ spec:
                   break
                 fi
               done
-              oc patch AIOpsAnalyticsOrchestrator aiops -n {{.Values.spec.aiManager.namespace}} --type merge  --patch-file ./templates/waiops/patches/analytics-pull-patch.yaml
-
+              oc patch AIOpsAnalyticsOrchestrator aiops -n cp4waiops --type merge  --patch '{"spec": {"pullSecrets": ["ibm-aiops-pull-secret"]}}'
 
               
 

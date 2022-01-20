@@ -20,7 +20,7 @@ Please drop me a note on Slack or by mail nikh@ch.ibm.com if you find glitches o
 | Date  | Description  | Files  | 
 |---|---|---|
 |  17.01.2022 | First Draft |  |
-
+|  20.01.2022 | Global Installer |  |
 
 <div style="page-break-after: always;"></div>
 
@@ -104,6 +104,46 @@ You can define Applications within Openshift GitOps that are being synched with 
 
 <div style="page-break-after: always;"></div>
 
+
+### Installer
+
+The Installer `00_install.sh` creates the Openshift GitOps instance and deploys a generic Installer Application
+
+![K8s CNI](./doc/pics/argo_install1.png)
+
+This is a global Helm chart that allows to install the sub charts for the different modules:
+
+* AI Manager
+* Event Manager
+* OpenLdap
+* RobotShop
+* Turbonomic
+* Humio (needs license)
+* AWX
+* Openshift Logging (ELK)
+* Openshift Mesh (Istio)
+
+
+
+<div style="page-break-after: always;"></div>
+
+To check out how it works:
+
+- Open the Installer app
+- Click on App Details
+	![K8s CNI](./doc/pics/argo_install2.png)
+
+- Click on Parameters
+	![K8s CNI](./doc/pics/argo_install3.png)
+
+
+Ususally will you use the Installer `00_install.sh` to easily update the parameters to install those components.
+	![K8s CNI](./doc/pics/argo_install4.png)
+	
+However if you need to, you can do this manually by modyfing the parameters of the Installer chart directly.
+
+<div style="page-break-after: always;"></div>
+
 ### Applications
 
 Openshift GitOps Applications reside in the `./argocd/applications` directory.
@@ -139,7 +179,7 @@ spec:
       selfHeal: true
 ```
 
-You can either use the provided scripts to install them or create the application directly in ArgoCD.
+You should use the provided installer.
 
 
 ## Make it your own
@@ -148,6 +188,7 @@ If you want to modify and/or play around with the values you just have to:
 
 - Clone my repository
 - In `./argocd/applications` replace all occurences in of `https://github.com/niklaushirt/cp4waiops-gitops` with your cloned repository 
+- Use the `./tools/00_pushAndAdaptBranch.sh` that will automatically push to your repository and adapt the branch information.
 
 
 
@@ -188,9 +229,18 @@ Select
 - Option 1 to prepare the OpenShift GitOps Installation
 - Option 2 or 3 depending on your environment
 
-The tool quits after OpenShift GitOps has been installed.
+Quit and relaunch the tool after OpenShift GitOps has been installed.
 
 <div style="page-break-after: always;"></div>
+
+## Get the CP4WAIOPS installation token
+
+You can get the installation (pull) token from [https://myibm.ibm.com/products-services/containerlibrary](https://myibm.ibm.com/products-services/containerlibrary).
+
+This allows the CP4WAIOPS images to be pulled from the IBM Container Registry.
+
+
+
 
 ## Installing
 
@@ -292,7 +342,7 @@ rm oc.tar.gz
 rm README.md
 ```
 
-
+<div style="page-break-after: always;"></div>
 
 I highly recomment installing the `k9s` tool :
 
@@ -355,6 +405,8 @@ sudo mv kubectl /usr/local/bin
 rm oc.tar.gz
 rm README.md
 ```
+
+<div style="page-break-after: always;"></div>
 
 I highly recomment installing the `k9s` tool :
 

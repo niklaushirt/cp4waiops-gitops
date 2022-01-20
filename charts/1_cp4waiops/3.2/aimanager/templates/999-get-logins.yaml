@@ -38,7 +38,7 @@ spec:
               echo "    "
               echo "      📥 AI Manager"
               echo ""
-              echo "                🌏 URL:      https://$(oc get route -n $WAIOPS_NAMESPACE cpd -o jsonpath={.spec.host})"
+              echo "                🌏 URL:      https://$(oc get route -n {{.Values.spec.aiManager.namespace}} cpd -o jsonpath={.spec.host})"
               echo "                🧑 User:     demo"
               echo "                🔐 Password: P4ssw0rd!"
               echo ""

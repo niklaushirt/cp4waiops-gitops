@@ -1,0 +1,1488 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: aimanager-aio-ai-platform-api-server-5485bd9899-
+  annotations:
+    openshift.io/scc: anyuid
+    cni.projectcalico.org/podIP: 172.30.46.184/32
+    productVersion: 3.2.0
+    cni.projectcalico.org/podIPs: 172.30.46.184/32
+    cloudpakName: IBM Cloud Pak for Watson AIOps
+    cni.projectcalico.org/containerID: 716d9b8ceb35c89e38eb6fc9ba89b112acd5c51fe923780fcc6813966288efbc
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "k8s-pod-network",
+          "ips": [
+              "172.30.46.184"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "k8s-pod-network",
+          "ips": [
+              "172.30.46.184"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    productName: AI Manager - IBM Cloud Pak for Watson AIOps
+    productMetric: FREE
+  resourceVersion: '485177'
+  name: aimanager-aio-ai-platform-api-server-5485bd9899-qgsnn
+  uid: 842715ac-0d6f-4d95-a7ec-8f4d181d5adc
+  creationTimestamp: '2022-01-20T12:30:27Z'
+  managedFields:
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-20T12:30:27Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:cloudpakName': {}
+            'f:productMetric': {}
+            'f:productName': {}
+            'f:productVersion': {}
+          'f:generateName': {}
+          'f:labels':
+            'f:helm.sh/chart': {}
+            'f:icpdsupport/serviceInstanceId': {}
+            'f:pod-template-hash': {}
+            'f:app.kubernetes.io/managed-by': {}
+            'f:icpdsupport/addOnName': {}
+            'f:app.kubernetes.io/name': {}
+            .: {}
+            'f:release': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/component': {}
+            'f:icpdsupport/app': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"cef9be39-e2ee-4f56-8c99-3583a7f3276e"}':
+              .: {}
+              'f:apiVersion': {}
+              'f:blockOwnerDeletion': {}
+              'f:controller': {}
+              'f:kind': {}
+              'f:name': {}
+              'f:uid': {}
+        'f:spec':
+          'f:volumes':
+            'k:{"name":"zeno-secrets"}':
+              .: {}
+              'f:name': {}
+              'f:projected':
+                .: {}
+                'f:defaultMode': {}
+                'f:sources': {}
+            'k:{"name":"elastic"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"postgres-tls-secret"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"dlaas-tls-secret"}':
+              .: {}
+              'f:configMap':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:name': {}
+              'f:name': {}
+            'k:{"name":"aiops-truststore-volume"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:secretName': {}
+            .: {}
+            'k:{"name":"elasticsearch-certs"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:secretName': {}
+            'k:{"name":"analytics-spark-trainer-certs"}':
+              .: {}
+              'f:configMap':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:name': {}
+              'f:name': {}
+            'k:{"name":"aiops-tls-volume"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:secretName': {}
+            'k:{"name":"minio-tls-secret"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:items': {}
+                'f:secretName': {}
+          'f:containers':
+            'k:{"name":"console"}':
+              'f:envFrom': {}
+              'f:image': {}
+              'f:volumeMounts':
+                'k:{"mountPath":"/home/zeno/.minio/"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+                'k:{"mountPath":"/etc/zeno/secrets"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/etc/ssl/certs/elasticsearch-cert.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/elastic"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+                'k:{"mountPath":"/ca-truststore.jks"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/ssl/certs/elastic-cert.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/ssl/certs/flink-tls-ca-truststore.jks"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/home/zeno/.dlaas/"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+                .: {}
+                'k:{"mountPath":"/etc/ssl/certs/ca-root-cert.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/ssl/certs/postgres-cert.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/ssl/certs/aiops-key.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/etc/ssl/certs/aiops-cert.pem"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/config/tls.p12"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+                'k:{"mountPath":"/home/zeno/.spark/"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:livenessProbe':
+                .: {}
+                'f:exec':
+                  .: {}
+                  'f:command': {}
+                'f:failureThreshold': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:env':
+                'k:{"name":"ENABLE_APISERVER_MONITOR"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MAX_PROBLEM_SIZE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"PERSISTENCE_SERVICE_SSL_CERTFILE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ENABLE_APISERVER_SCHEDULER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"REGISTRY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SIMILAR_INCIDENTS_CPUS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"DATABASE_USER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_URL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"AWS_SECRET_ACCESS_KEY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ANALYTICS_SPARK_TRAINER_PASSWORD"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_CACERT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MAX_INCIDENT_SIZE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_SSLROOTCERT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"AWS_ACCESS_KEY_ID"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"CHANGE_RISK_MEMORY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MINIO_ID"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"MAX_CHANGE_SIZE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"CATRIDGE_NAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SIMILAR_INCIDENTS_TRAINING_IMAGE_TAG"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ELASTIC_SEARCH_HOST"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"CHANGE_RISK_IMAGE_TAG"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_SERVICE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"MINIO_KEY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"CHANGE_RISK_IMAGE_DIGEST"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SIMILAR_INCIDENTS_TRAINING_IMAGE_DIGEST"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                .: {}
+                'k:{"name":"MINIO_CA_BUNDLE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_CACERT_RAW"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_USER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"DATABASE_URL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"CHANGE_RISK_CPUS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"DATABASE_PASSWORD"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"KAFKA_TOPIC_CR_MODEL_MANAGEMENT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"CHANGE_RISK_IMAGE_NAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SIMILAR_INCIDENTS_TRAINING_IMAGE_NAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"NODE_ENV"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ANALYTICS_SPARK_TRAINER_USER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_CHUNK_SIZE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"DATABASE_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"SIMILAR_INCIDENTS_MEMORY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_ENDPOINT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"DATABASE_CACERT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SERVICE_CACERT_RAW"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:configMapKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"APISERVER_LOG_LEVEL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_USERNAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"CHANGE_RISK_MODEL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_PROTOCOL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ELASTIC_SECRET_PATH"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ANALYTICS_SPARK_TRAINER_URL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_PASSWORD"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"DATABASE_HOST"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"MIN_LABEL_PERCENT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+              'f:readinessProbe':
+                .: {}
+                'f:exec':
+                  .: {}
+                  'f:command': {}
+                'f:failureThreshold': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:securityContext':
+                .: {}
+                'f:allowPrivilegeEscalation': {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+                'f:privileged': {}
+                'f:readOnlyRootFilesystem': {}
+                'f:runAsNonRoot': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+          'f:dnsPolicy': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:terminationGracePeriodSeconds': {}
+          'f:initContainers':
+            .: {}
+            'k:{"name":"elastic-is-ready"}':
+              'f:image': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:command': {}
+              'f:env':
+                'k:{"name":"ES_URL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_CACERT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_SSLROOTCERT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ELASTIC_SEARCH_HOST"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_SERVICE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                .: {}
+                'k:{"name":"ES_USER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_ENDPOINT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_USERNAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"ES_PROTOCOL"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ES_PASSWORD"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+              'f:securityContext':
+                .: {}
+                'f:allowPrivilegeEscalation': {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+                'f:privileged': {}
+                'f:readOnlyRootFilesystem': {}
+                'f:runAsNonRoot': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+            'k:{"name":"minio-is-ready"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/workdir/home/.mc/certs/CAs/public.crt"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:subPath': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:command': {}
+              'f:env':
+                .: {}
+                'k:{"name":"MINIO_ACCESS_KEY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+                'k:{"name":"MINIO_ENDPOINT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MINIO_SECRET_KEY"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:secretKeyRef':
+                      .: {}
+                      'f:key': {}
+                      'f:name': {}
+              'f:securityContext':
+                .: {}
+                'f:allowPrivilegeEscalation': {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+                'f:privileged': {}
+                'f:readOnlyRootFilesystem': {}
+                'f:runAsNonRoot': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+          'f:imagePullSecrets':
+            .: {}
+            'k:{"name":"ibm-aiops-pull-secret"}':
+              .: {}
+              'f:name': {}
+          'f:enableServiceLinks': {}
+          'f:securityContext':
+            .: {}
+            'f:runAsNonRoot': {}
+          'f:affinity':
+            .: {}
+            'f:nodeAffinity':
+              .: {}
+              'f:requiredDuringSchedulingIgnoredDuringExecution':
+                .: {}
+                'f:nodeSelectorTerms': {}
+    - manager: calico
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-20T12:30:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:cni.projectcalico.org/containerID': {}
+            'f:cni.projectcalico.org/podIP': {}
+            'f:cni.projectcalico.org/podIPs': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-20T12:30:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+            'f:k8s.v1.cni.cncf.io/networks-status': {}
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2022-01-20T12:30:32Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:initContainerStatuses': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"172.30.46.184"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+  namespace: cp4waiops
+  ownerReferences:
+    - apiVersion: apps/v1
+      kind: ReplicaSet
+      name: aimanager-aio-ai-platform-api-server-5485bd9899
+      uid: cef9be39-e2ee-4f56-8c99-3583a7f3276e
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app.kubernetes.io/instance: aimanager
+    release: aimanager
+    app.kubernetes.io/component: ai-platform-api-server
+    app.kubernetes.io/managed-by: Tiller
+    icpdsupport/app: ai-platform-api-server
+    helm.sh/chart: ibm-watson-aiops-prod
+    icpdsupport/serviceInstanceId: '1642672279058685'
+    app.kubernetes.io/name: aio
+    pod-template-hash: 5485bd9899
+    icpdsupport/addOnName: aiops
+spec:
+  restartPolicy: Always
+  initContainers:
+    - resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      terminationMessagePath: /dev/termination-log
+      name: minio-is-ready
+      command:
+        - /bin/bash
+        - '-c'
+        - >
+          set -e ; # Have script exit in the event of a failed command.
+
+
+          # connectToMinio
+
+          # Use a check-sleep-check loop to wait for Minio service to be
+          available
+
+          connectToMinio() {
+            ATTEMPTS=0 ; LIMIT=29 ; # Allow 30 attempts
+            set +e ; # The connections to minio are allowed to fail.
+            echo "Connecting to Minio server: $MINIO_ENDPOINT" ;
+            MC_COMMAND="mc config host add myminio $MINIO_ENDPOINT $MINIO_ACCESS_KEY $MINIO_SECRET_KEY";
+            $MC_COMMAND ;
+            STATUS=$? ;
+            until [ $STATUS = 0 ]
+            do
+              ATTEMPTS=`expr $ATTEMPTS + 1` ;
+              echo \"Failed attempts: $ATTEMPTS\" ;
+              if [ $ATTEMPTS -gt $LIMIT ]; then
+                exit 1 ;
+              fi ;
+              sleep 2 ; # 1 second intervals between attempts
+              $MC_COMMAND ;
+              STATUS=$? ;
+            done ;
+            set -e ; # reset `e` as active
+            return 0
+          }
+
+
+          # checkBucketExists ($bucket)
+
+          # Check if the bucket exists, by using the exit code of `mc ls`
+
+          checkBucketExists() {
+            BUCKET=$1
+            CMD=$(/workdir/bin/mc ls myminio/$BUCKET > /dev/null 2>&1)
+            return $?
+          }
+
+
+          # Connect to MinIO and check if bucket exists
+
+          connectToMinio
+
+          echo "Minio Connection Established"
+      env:
+        - name: MINIO_ENDPOINT
+          value: 'https://aimanager-ibm-minio-svc.cp4waiops.svc.cluster.local:9000'
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: accesskey
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: secretkey
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+            - MKNOD
+        privileged: false
+        runAsNonRoot: true
+        readOnlyRootFilesystem: false
+        allowPrivilegeEscalation: false
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: minio-tls-secret
+          mountPath: /workdir/home/.mc/certs/CAs/public.crt
+          subPath: tls.cacrt
+        - name: kube-api-access-8xvwn
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        cp.icr.io/cp/cp4waiops/opencontent-minio-client@sha256:d187dda6fef83ab416b262ca8486658c049922efaf421194d0374271e75d16fb
+    - resources:
+        limits:
+          cpu: 200m
+          memory: 2Gi
+        requests:
+          cpu: 100m
+          memory: 1Gi
+      terminationMessagePath: /dev/termination-log
+      name: elastic-is-ready
+      command:
+        - /bin/bash
+        - '-c'
+        - |
+          set -e
+          while true
+          do
+            echo $(date +%Y-%m-%dT%H:%M:%S) ": " "Waiting for ElasticSearch service to be ready"
+            if curl -k --user $ES_USER:$ES_PASSWORD $ES_URL; then
+              break;
+            else
+              echo "Error: curl returned $?"
+              sleep 10s
+            fi
+          done
+          curl -k --user $ES_USER:$ES_PASSWORD ${ES_URL}/_cluster/health?pretty
+          exit 0
+      env:
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: password
+        - name: ES_USER
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: username
+        - name: ES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: username
+        - name: ES_SERVICE
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: host
+        - name: ES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: port
+        - name: ES_PROTOCOL
+          value: 'https://'
+        - name: ES_ENDPOINT
+          value: '$(ES_SERVICE):$(ES_PORT)'
+        - name: ELASTIC_SEARCH_HOST
+          value: '$(ES_SERVICE):$(ES_PORT)'
+        - name: ES_SSLROOTCERT
+          value: /etc/ssl/certs/elasticsearch-cert.pem
+        - name: ES_CACERT
+          value: /etc/ssl/certs/elasticsearch-cert.pem
+        - name: ES_URL
+          value: '$(ES_PROTOCOL)$(ES_SERVICE):$(ES_PORT)'
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+            - MKNOD
+        privileged: false
+        runAsNonRoot: true
+        readOnlyRootFilesystem: false
+        allowPrivilegeEscalation: false
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: kube-api-access-8xvwn
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        cp.icr.io/cp/cp4waiops/ai-platform-api-server@sha256:3c08f68c1ce898728b86ce9e570b08018fa8cf27a08df8603a2cd301cfae735a
+  serviceAccountName: default
+  imagePullSecrets:
+    - name: ibm-aiops-pull-secret
+  priority: 0
+  schedulerName: default-scheduler
+  enableServiceLinks: true
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                  - amd64
+                  - linux
+  terminationGracePeriodSeconds: 30
+  preemptionPolicy: PreemptLowerPriority
+  nodeName: 10.13.177.149
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c26,c10'
+    runAsNonRoot: true
+  containers:
+    - resources:
+        limits:
+          cpu: 200m
+          memory: 2Gi
+        requests:
+          cpu: 100m
+          memory: 1Gi
+      readinessProbe:
+        exec:
+          command:
+            - bash
+            - '-c'
+            - HOME=/home/zeno /opt/health/ready.sh
+        initialDelaySeconds: 30
+        timeoutSeconds: 25
+        periodSeconds: 30
+        successThreshold: 1
+        failureThreshold: 3
+      terminationMessagePath: /dev/termination-log
+      name: console
+      livenessProbe:
+        exec:
+          command:
+            - bash
+            - '-c'
+            - /opt/health/live.sh
+        initialDelaySeconds: 30
+        timeoutSeconds: 5
+        periodSeconds: 30
+        successThreshold: 1
+        failureThreshold: 3
+      env:
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: password
+        - name: ES_USER
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: username
+        - name: ES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: username
+        - name: ES_SERVICE
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: host
+        - name: ES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: port
+        - name: ES_PROTOCOL
+          value: 'https://'
+        - name: ES_ENDPOINT
+          value: '$(ES_SERVICE):$(ES_PORT)'
+        - name: ELASTIC_SEARCH_HOST
+          value: '$(ES_SERVICE):$(ES_PORT)'
+        - name: ES_SSLROOTCERT
+          value: /etc/ssl/certs/elasticsearch-cert.pem
+        - name: ES_CACERT
+          value: /etc/ssl/certs/elasticsearch-cert.pem
+        - name: ES_URL
+          value: '$(ES_PROTOCOL)$(ES_SERVICE):$(ES_PORT)'
+        - name: DATABASE_URL
+          value: '$(DATABASE_HOST):$(DATABASE_PORT)'
+        - name: DATABASE_HOST
+          valueFrom:
+            secretKeyRef:
+              name: cp4waiops-postgresdb-postgresql-cp4waiops-secret
+              key: host
+        - name: DATABASE_PORT
+          valueFrom:
+            secretKeyRef:
+              name: cp4waiops-postgresdb-postgresql-cp4waiops-secret
+              key: port
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: cp4waiops-postgresdb-postgresql-cp4waiops-secret
+              key: username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cp4waiops-postgresdb-postgresql-cp4waiops-secret
+              key: password
+        - name: DATABASE_CACERT
+          value: /etc/ssl/certs/postgres-cert.pem
+        - name: ANALYTICS_SPARK_TRAINER_USER
+          valueFrom:
+            secretKeyRef:
+              name: aiops-ir-analytics-trainer-system-secret
+              key: username
+        - name: ANALYTICS_SPARK_TRAINER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: aiops-ir-analytics-trainer-system-secret
+              key: password
+        - name: ANALYTICS_SPARK_TRAINER_URL
+          value: 'http://aiops-ir-analytics-spark-pipeline-composer.cp4waiops.svc:8080'
+        - name: CATRIDGE_NAME
+          value: cp4waiops-cartridge
+        - name: APISERVER_LOG_LEVEL
+          value: debug
+        - name: NODE_ENV
+          value: prod
+        - name: ENABLE_APISERVER_SCHEDULER
+          value: 'true'
+        - name: ENABLE_APISERVER_MONITOR
+          value: 'true'
+        - name: CHANGE_RISK_CPUS
+          value: '2'
+        - name: CHANGE_RISK_MEMORY
+          value: 4GiB
+        - name: CHANGE_RISK_IMAGE_NAME
+          value: change-risk
+        - name: CHANGE_RISK_IMAGE_TAG
+          value: '1634755610'
+        - name: CHANGE_RISK_IMAGE_DIGEST
+          value: >-
+            sha256:557fffcd1107736d46f82aaa207468d359dc80b995dde55c4c309c3877cb0c73
+        - name: CHANGE_RISK_MODEL
+          value: change-risk-models
+        - name: ES_CHUNK_SIZE
+          value: '1000'
+        - name: KAFKA_TOPIC_CR_MODEL_MANAGEMENT
+          value: cp4waiops-cartridge-change-risk-mgmt
+        - name: REGISTRY
+          value: cp.icr.io/cp/cp4waiops
+        - name: SIMILAR_INCIDENTS_CPUS
+          value: '1'
+        - name: SIMILAR_INCIDENTS_MEMORY
+          value: 2GiB
+        - name: SIMILAR_INCIDENTS_TRAINING_IMAGE_NAME
+          value: similar-incidents-training
+        - name: SIMILAR_INCIDENTS_TRAINING_IMAGE_TAG
+          value: 2109211254_signed
+        - name: SIMILAR_INCIDENTS_TRAINING_IMAGE_DIGEST
+          value: >-
+            sha256:54d44bfee9fb5afadf6d5b364636d0809ff1118e1ee9e6721d11c6eb0af4c2e0
+        - name: MIN_LABEL_PERCENT
+          value: '2.0'
+        - name: MAX_CHANGE_SIZE
+          value: '100000'
+        - name: MAX_INCIDENT_SIZE
+          value: '100000'
+        - name: MAX_PROBLEM_SIZE
+          value: '100000'
+        - name: PERSISTENCE_SERVICE_SSL_CERTFILE
+          value: /etc/ssl/certs/elasticsearch-cert.pem
+        - name: ELASTIC_SECRET_PATH
+          value: /etc/elastic
+        - name: ES_CACERT_RAW
+          valueFrom:
+            secretKeyRef:
+              name: ibm-aiops-elastic-secret
+              key: caCertificate
+        - name: SERVICE_CACERT_RAW
+          valueFrom:
+            configMapKeyRef:
+              name: aimanager-asm-service-ca
+              key: service-ca.crt
+        - name: MINIO_CA_BUNDLE
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-aio-tls
+              key: tls.cacrt
+        - name: MINIO_ID
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: accesskey
+        - name: MINIO_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: secretkey
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: secretkey
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aimanager-ibm-minio-access-secret
+              key: accesskey
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+            - MKNOD
+        privileged: false
+        runAsNonRoot: true
+        readOnlyRootFilesystem: false
+        allowPrivilegeEscalation: false
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: elastic
+          readOnly: true
+          mountPath: /etc/elastic
+        - name: dlaas-tls-secret
+          readOnly: true
+          mountPath: /home/zeno/.dlaas/
+        - name: analytics-spark-trainer-certs
+          readOnly: true
+          mountPath: /home/zeno/.spark/
+        - name: minio-tls-secret
+          readOnly: true
+          mountPath: /home/zeno/.minio/
+        - name: elasticsearch-certs
+          mountPath: /etc/ssl/certs/elasticsearch-cert.pem
+          subPath: elasticsearch-cert.pem
+        - name: elasticsearch-certs
+          mountPath: /etc/ssl/certs/elastic-cert.pem
+          subPath: elasticsearch-cert.pem
+        - name: aiops-tls-volume
+          mountPath: /etc/ssl/certs/ca-root-cert.pem
+          subPath: tls.crt
+        - name: aiops-tls-volume
+          mountPath: /etc/ssl/certs/aiops-cert.pem
+          subPath: tls.cacrt
+        - name: aiops-tls-volume
+          mountPath: /etc/ssl/certs/aiops-key.pem
+          subPath: tls.key
+        - name: aiops-tls-volume
+          mountPath: /config/tls.p12
+          subPath: tls.p12
+        - name: aiops-truststore-volume
+          mountPath: /etc/ssl/certs/flink-tls-ca-truststore.jks
+          subPath: flink-tls-ca-truststore.jks
+        - name: aiops-truststore-volume
+          mountPath: /ca-truststore.jks
+          subPath: flink-tls-ca-truststore.jks
+        - name: zeno-secrets
+          mountPath: /etc/zeno/secrets
+        - name: postgres-tls-secret
+          mountPath: /etc/ssl/certs/postgres-cert.pem
+          subPath: caCertificate
+        - name: kube-api-access-8xvwn
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      envFrom:
+        - configMapRef:
+            name: aimanager-aio-model-train-console-config
+        - configMapRef:
+            name: aimanager-aio-component-urls
+        - configMapRef:
+            name: aimanager-aio-kafka
+        - configMapRef:
+            name: aimanager-aio-tls
+      image: >-
+        cp.icr.io/cp/cp4waiops/ai-platform-api-server@sha256:3c08f68c1ce898728b86ce9e570b08018fa8cf27a08df8603a2cd301cfae735a
+  serviceAccount: default
+  volumes:
+    - name: elastic
+      secret:
+        secretName: ibm-aiops-elastic-secret
+        defaultMode: 420
+    - name: dlaas-tls-secret
+      configMap:
+        name: aimanager-modeltrain-cert-configmap
+        items:
+          - key: trainer-ca.crt
+            path: ca.crt
+        defaultMode: 420
+    - name: analytics-spark-trainer-certs
+      configMap:
+        name: aiops-ir-analytics-spark-pipeline-composer-ca
+        items:
+          - key: service-ca.crt
+            path: ca.crt
+        defaultMode: 420
+    - name: minio-tls-secret
+      secret:
+        secretName: aimanager-aio-tls
+        items:
+          - key: tls.cacrt
+            path: tls.cacrt
+        defaultMode: 420
+    - name: elasticsearch-certs
+      secret:
+        secretName: ibm-aiops-elastic-secret
+        items:
+          - key: caCertificate
+            path: elasticsearch-cert.pem
+        defaultMode: 420
+    - name: aiops-tls-volume
+      secret:
+        secretName: aimanager-aio-tls
+        items:
+          - key: tls.crt
+            path: tls.crt
+          - key: tls.key
+            path: tls.key
+          - key: tls.cacrt
+            path: tls.cacrt
+          - key: tls.p12
+            path: tls.p12
+        defaultMode: 420
+    - name: aiops-truststore-volume
+      secret:
+        secretName: flink-truststore
+        items:
+          - key: flink-tls-ca-truststore.jks
+            path: flink-tls-ca-truststore.jks
+        defaultMode: 420
+    - name: zeno-secrets
+      projected:
+        sources:
+          - secret:
+              name: kafka-truststore
+          - secret:
+              name: ibm-aiops-elastic-secret
+              items:
+                - key: password
+                  path: elasticsearch.password
+          - secret:
+              name: aiops-ir-core-ncodl-std-secret
+              items:
+                - key: password
+                  path: dataLayer.password
+                - key: username
+                  path: dataLayer.username
+          - secret:
+              name: ibm-aiops-kafka-secret
+              items:
+                - key: password
+                  path: kafka.password
+                - key: authMechanism
+                  path: kafka.authMechanism
+                - key: bootstrapServers
+                  path: kafka.bootstrapServers
+                - key: caCertificate
+                  path: es-cert.pem
+                - key: host
+                  path: kafka.host
+                - key: port
+                  path: kafka.port
+                - key: username
+                  path: kafka.username
+        defaultMode: 420
+    - name: postgres-tls-secret
+      secret:
+        secretName: cp4waiops-postgresdb-postgresql-cp4waiops-secret
+        defaultMode: 420
+    - name: kube-api-access-8xvwn
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: ca.crt
+          - downwardAPI:
+              items:
+                - path: namespace
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+          - configMap:
+              name: openshift-service-ca.crt
+              items:
+                - key: service-ca.crt
+                  path: service-ca.crt
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+status:
+  containerStatuses:
+    - name: console
+      state:
+        waiting:
+          reason: PodInitializing
+      lastState: {}
+      ready: false
+      restartCount: 0
+      image: >-
+        cp.icr.io/cp/cp4waiops/ai-platform-api-server@sha256:3c08f68c1ce898728b86ce9e570b08018fa8cf27a08df8603a2cd301cfae735a
+      imageID: ''
+      started: false
+  qosClass: Burstable
+  podIPs:
+    - ip: 172.30.46.184
+  podIP: 172.30.46.184
+  hostIP: 10.13.177.149
+  startTime: '2022-01-20T12:30:27Z'
+  initContainerStatuses:
+    - name: minio-is-ready
+      state:
+        terminated:
+          exitCode: 0
+          reason: Completed
+          startedAt: '2022-01-20T12:30:31Z'
+          finishedAt: '2022-01-20T12:30:33Z'
+          containerID: >-
+            cri-o://95d6ba1ab23c69c89a696ea4bc2bc805875076f751b821a892cd5bc0dde3053f
+      lastState: {}
+      ready: true
+      restartCount: 0
+      image: >-
+        cp.icr.io/cp/cp4waiops/opencontent-minio-client@sha256:d187dda6fef83ab416b262ca8486658c049922efaf421194d0374271e75d16fb
+      imageID: >-
+        cp.icr.io/cp/cp4waiops/opencontent-minio-client@sha256:d187dda6fef83ab416b262ca8486658c049922efaf421194d0374271e75d16fb
+      containerID: 'cri-o://95d6ba1ab23c69c89a696ea4bc2bc805875076f751b821a892cd5bc0dde3053f'
+    - name: elastic-is-ready
+      state:
+        waiting:
+          reason: CreateContainerConfigError
+          message: >-
+            container has runAsNonRoot and image has non-numeric user (watson),
+            cannot verify user is non-root (pod:
+            "aimanager-aio-ai-platform-api-server-5485bd9899-qgsnn_cp4waiops(842715ac-0d6f-4d95-a7ec-8f4d181d5adc)",
+            container: elastic-is-ready)
+      lastState: {}
+      ready: false
+      restartCount: 0
+      image: >-
+        cp.icr.io/cp/cp4waiops/ai-platform-api-server@sha256:3c08f68c1ce898728b86ce9e570b08018fa8cf27a08df8603a2cd301cfae735a
+      imageID: ''
+  conditions:
+    - type: Initialized
+      status: 'False'
+      lastProbeTime: null
+      lastTransitionTime: '2022-01-20T12:30:27Z'
+      reason: ContainersNotInitialized
+      message: 'containers with incomplete status: [elastic-is-ready]'
+    - type: Ready
+      status: 'False'
+      lastProbeTime: null
+      lastTransitionTime: '2022-01-20T12:30:27Z'
+      reason: ContainersNotReady
+      message: 'containers with unready status: [console]'
+    - type: ContainersReady
+      status: 'False'
+      lastProbeTime: null
+      lastTransitionTime: '2022-01-20T12:30:27Z'
+      reason: ContainersNotReady
+      message: 'containers with unready status: [console]'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2022-01-20T12:30:27Z'
+  phase: Pending

@@ -62,9 +62,9 @@ spec:
 
               # collect certificate from OpenShift ingress
               ingress_pod=$(oc get secrets -n openshift-ingress | grep tls | grep -v router-metrics-certs-default | awk '{print $1}')
-              oc get secret -n openshift-ingress -o 'go-template={{index .data "tls.crt"}}' ${ingress_pod} | base64 -d > cert.crt
-              oc get secret -n openshift-ingress -o 'go-template={{index .data "tls.key"}}' ${ingress_pod} | base64 -d > cert.key
-              oc get secret -n {{.Values.spec.aiManager.namespace}} iaf-system-automationui-aui-zen-ca -o 'go-template={{index .data "ca.crt"}}'| base64 -d > ca.crt
+              oc get secret -n openshift-ingress -o 'go-template=\{\{index .data "tls.crt"\}\}' ${ingress_pod} | base64 -d > cert.crt
+              oc get secret -n openshift-ingress -o 'go-template=\{\{index .data "tls.key"\}\}' ${ingress_pod} | base64 -d > cert.key
+              oc get secret -n {{.Values.spec.aiManager.namespace}} iaf-system-automationui-aui-zen-ca -o 'go-template=\{\{ndex .data "ca.crt"\}\}'| base64 -d > ca.crt
               # backup existing secret
               oc get secret -n {{.Values.spec.aiManager.namespace}} external-tls-secret -o yaml > external-tls-secret$(date +%Y-%m-%dT%H:%M:%S).yaml
               # delete existing secret

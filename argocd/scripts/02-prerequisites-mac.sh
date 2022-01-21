@@ -47,11 +47,6 @@ echo ""
         echo "      📥 Install Homebrew"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                 
-        echo "      📥 Install Ansible"
-        brew install ansible
-
-        echo "      📥 Install Ansible Kubernetes"
-        ansible-galaxy collection install community.kubernetes:1.2.1
 
         echo "      📥 Install kafkacat"
         brew install kafkacat

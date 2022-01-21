@@ -43,7 +43,30 @@ export TEMP_PATH=~/aiops-install
 
 
 
-
+if [ ! -x "$(command -v oc)" ]; then
+      echo "❌ Openshift Client not installed."
+      echo "   🚀 Install prerequisites with ./argocd/scripts/02-prerequisites-mac.sh or ./argocd/scripts/03-prerequisites-ubuntu.sh"
+      echo "❌ Aborting...."
+      exit 1
+fi
+if [ ! -x "$(command -v jq)" ]; then
+      echo "❌ jq not installed."
+      echo "   🚀 Install prerequisites with ./argocd/scripts/02-prerequisites-mac.sh or ./argocd/scripts/03-prerequisites-ubuntu.sh"
+      echo "❌ Aborting...."
+      exit 1
+fi
+if [ ! -x "$(command -v argocd)" ]; then
+      echo "❌ argocd not installed."
+      echo "   🚀 Install prerequisites with ./argocd/scripts/02-prerequisites-mac.sh or ./argocd/scripts/03-prerequisites-ubuntu.sh"
+      echo "❌ Aborting...."
+      exit 1
+fi
+if [ ! -x "$(command -v cloudctl)" ]; then
+      echo "❌ argocd not installed."
+      echo "   🚀 Install prerequisites with ./argocd/scripts/02-prerequisites-mac.sh or ./argocd/scripts/03-prerequisites-ubuntu.sh"
+      echo "❌ Aborting...."
+      exit 1
+fi
 
 
 export CLUSTER_STATUS=$(oc status | grep "In project")

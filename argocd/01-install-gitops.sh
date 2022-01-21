@@ -94,7 +94,7 @@ export actBranch=$(git branch | tr -d '* ')
 echo "--------------------------------------------------------------------------------------------------------------------------------"
 echo "    🚀  Update Branch to $actBranch"
 echo "--------------------------------------------------------------------------------------------------------------------------------"
-cp ./argocd/install/3-installer.yaml /tmp/3-installer.yaml
+cp ./argocd/install/3-argocd-installer.yaml /tmp/3-installer.yaml
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" /tmp/3-installer.yaml
 gsed -i "s/value: main/value: $actBranch/g" /tmp/3-installer.yaml
 

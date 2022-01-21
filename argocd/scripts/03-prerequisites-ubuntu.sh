@@ -67,7 +67,7 @@ echo ""
         echo "      📥 Install ArgoCD commandline"    
         curl -L https://github.com/argoproj/argo-cd/releases/download/v2.2.2/argocd-linux-amd64 -o argocd
         sudo mv argocd /usr/local/bin/argocd
-
+        sudo chmod +x /usr/local/bin/argocd
         
     echo ""  
     echo "" 

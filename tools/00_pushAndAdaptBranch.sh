@@ -56,7 +56,7 @@ cd ./argocd/applications/
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" *
 cd -
 
-gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3_installer.yaml
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3-installer.yaml
 
 
 read -p " ❗❓ do you want to check-in the GitHub branch $actBranch? [y,N] " DO_COMM

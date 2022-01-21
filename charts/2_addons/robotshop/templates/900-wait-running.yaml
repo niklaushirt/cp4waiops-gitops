@@ -1,11 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 998-wait-running-evtmanager
+  name: 900-wait-running-robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "998"
-    argocd.argoproj.io/hook: PostSync
-  namespace: {{.Values.spec.eventManager.namespace}}
+    argocd.argoproj.io/sync-wave: "900"
+  namespace: robot-shop
 spec:
   template:
     spec:
@@ -27,8 +26,8 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get pod -n {{.Values.spec.eventManager.namespace}} | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '75' ]]; then
+                READY=$(oc get pod -n robot-shop | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '12' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 30
                 else
@@ -36,7 +35,6 @@ spec:
                 fi
               done
           
-
+      serviceAccountName: openshift-argocd-admin-ai
       restartPolicy: Never
-      serviceAccountName: openshift-argocd-admin-evt
   backoffLimit: 4

@@ -1,11 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 998-wait-running-humio
+  name: 900-wait-running-elk
   annotations:
-    argocd.argoproj.io/sync-wave: "998"
-    argocd.argoproj.io/hook: PostSync
-  namespace: humio-logging
+    argocd.argoproj.io/sync-wave: "900"
+  namespace: openshift-logging
 spec:
   template:
     spec:
@@ -27,8 +26,8 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get pod -n humio-logging | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '3' ]]; then
+                READY=$(oc get pod -n openshift-logging | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '10' ]]; then
                   echo 'Deployment not completed yet.'
                   sleep 30
                 else
@@ -36,6 +35,6 @@ spec:
                 fi
               done
           
-      serviceAccountName: openshift-argocd-admin-ai
+      serviceAccountName: cluster-logging-operator
       restartPolicy: Never
   backoffLimit: 4

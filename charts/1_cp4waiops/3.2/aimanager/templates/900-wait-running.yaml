@@ -1,11 +1,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 998-wait-running-turbonomic
+  name: 900-wait-running-aimanager
   annotations:
-    argocd.argoproj.io/sync-wave: "998"
-    argocd.argoproj.io/hook: PostSync
-  namespace: turbonomic
+    argocd.argoproj.io/sync-wave: "900"
+  namespace: {{.Values.spec.aiManager.namespace}}
 spec:
   template:
     spec:
@@ -27,15 +26,16 @@ spec:
               set -x
 
               while : ; do
-                READY=$(oc get pod -n turbonomic | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
-                if [[  $READY  -lt '57' ]]; then
+                READY=$(oc get pod -n {{.Values.spec.aiManager.namespace}} | grep "1/1\|2/2\|3/3\|4/4"|wc -l|tr -d ' ')
+                if [[  $READY  -lt '113' ]]; then
                   echo 'Deployment not completed yet.'
-                  sleep 5
+                  sleep 30
                 else
                   break
                 fi
               done
           
-      serviceAccountName: openshift-argocd-admin-ai
+
       restartPolicy: Never
+      serviceAccountName: openshift-argocd-admin-ai
   backoffLimit: 4

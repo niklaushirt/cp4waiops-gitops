@@ -58,11 +58,11 @@ cd -
 
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3-installer.yaml
 
-
-read -p " ❗❓ do you want to check-in the GitHub branch $actBranch? [y,N] " DO_COMM
+export gitCommitMessage=$(date +%Y%m%d-%H%M)
+read -p " ❗❓ do you want to check-in the GitHub branch $actBranch with message $gitCommitMessage? [y,N] " DO_COMM
 if [[ $DO_COMM == "y" ||  $DO_COMM == "Y" ]]; then
     echo "   ✅ Ok, checking in..."
-    git add . && git commit -m "220119" && git push
+    git add . && git commit -m $gitCommitMessage && git push
 else
     echo "    ⚠️  Skipping"
 fi

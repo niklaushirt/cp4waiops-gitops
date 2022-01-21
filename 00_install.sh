@@ -584,9 +584,9 @@ fi
   read selection
   echo ""
   case $selection in
-    1 ) clear ; ./argocd/01_install_gitops.sh  ;;
-    2 ) clear ; ./argocd/02_install_prerequisites_mac.sh  ;;
-    3 ) clear ; ./argocd/03_install_prerequisites_ubuntu.sh  ;;
+    1 ) clear ; ./argocd/01-install-gitops.sh  ;;
+    2 ) clear ; ./argocd/scripts/02-prerequisites-mac.sh  ;;
+    3 ) clear ; ./argocd/scripts/03-prerequisites-ubuntu.sh  ;;
     11 ) clear ; menu_INSTALL_AIMGR  ;;
     12 ) clear ; menu_INSTALL_EVTMGR  ;;
     21 ) clear ; menu_INSTALL_TURBO  ;;

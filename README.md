@@ -21,6 +21,7 @@ Please drop me a note on Slack or by mail nikh@ch.ibm.com if you find glitches o
 |---|---|---|
 |  17.01.2022 | First Draft |  |
 |  20.01.2022 | Global Installer |  |
+|  21.01.2022 | Some housekeeping |  |
 
 <div style="page-break-after: always;"></div>
 
@@ -187,7 +188,7 @@ You should use the provided installer.
 If you want to modify and/or play around with the values you just have to:
 
 - Clone my repository
-- In `./argocd/applications` replace all occurences in of `https://github.com/niklaushirt/cp4waiops-gitops` with your cloned repository 
+- Replace all occurences in of `https://github.com/niklaushirt/cp4waiops-gitops` with your cloned repository 
 - Use the `./tools/00_pushAndAdaptBranch.sh` that will automatically push to your repository and adapt the branch information.
 
 
@@ -302,7 +303,7 @@ You need the following tools installed in order to follow through this guide:
 Or just run:
 
 ```
-sudo ./argocd/02_install_prerequisites_mac.sh
+sudo ./argocd/scritps/02-prerequisites-mac.sh
 ```
 
 #### 1.2.1.1 On Mac - Manual
@@ -365,7 +366,7 @@ rm README.md
 Or for Ubuntu you can run (for other distros you're on your own, sorry):
 
 ```
-sudo ./argocd/03_install_prerequisites_ubuntu.sh
+sudo ./argocd/scritps/02-prerequisites-ubuntu.sh
 ```
 
 
@@ -458,7 +459,7 @@ Simply click on the green `CODE` button and select `Download Zip` to download th
 Or just run the following:
 
 ```bash
-./argocd/01_install_gitops.sh
+./argocd/01-install-gitops.sh
 ```
 
 ## 2.2 Accessing OpenShift GitOps
@@ -586,11 +587,11 @@ eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp
 Or just run:
 
 ```bash
-./argocd/11_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./argocd/scritps/11_install_ai_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./argocd/11_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./argocd/scritps/11_install_ai_manager.sh -t eyJhbGciOiJIUzI1vvvvNzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:
@@ -691,11 +692,11 @@ spec:
 Or just run:
 
 ```bash
-./argocd/12_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
+./argocd/scritps/12_install_event_manager.sh -t <PULL_SECRET_TOKEN> [-v true]
 
 
 Example:
-./argocd/12_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
+./argocd/scritps/12_install_event_manager.sh -t eyJhbGciOiJIUzI1NiJ9.eyJpc3adsgJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1Nzg0NzQzMjgsImp0aSI6IjRjYTM3gsdgdMzExNjQxZDdiMDJhMjRmMGMxMWgdsmZhIn0.Z-rqfSLJA-R-ow__tI3RmLx4mssdggdabvdcgdgYEkbYY
 ```
 
 This will install:
@@ -749,7 +750,7 @@ aiManagerNamespace: cp4waiops
 Or just run:
 
 ```bash
-./argocd/32_install_ldap.sh
+./argocd/scritps/32-addons-ldap.sh
 ```
 
 This will install:
@@ -810,7 +811,7 @@ You can check/modify those in the OpenLDAPAdmin interface that you can access wi
 Or just run:
 
 ```bash
-./argocd/33_addons_robotshop.sh
+./argocd/scritps/33-addons-robotshop.sh
 ```
 
 This will install:
@@ -1941,7 +1942,7 @@ Or just:
 1. Launch
 
 	```bash
-	./argocd/21_addons_turbonomic.sh
+	./argocd/scritps/21-solutions-turbonomic.sh
 	```
 2. Wait for the pods to come up
 3. Open Turbonomic
@@ -1976,20 +1977,41 @@ and check that `Sync Status` and `Sync Result` are OK
 # 14. Installing OCP ELK 
 ---------------------------------------------------------------
 
-#❗NOT WORKING YET
+
+
+You can easily install Openshift Logging/ELK into the same cluster as CP4WAIOPS.
 
 
 
-You can easily install ELK into the same cluster as CP4WAIOPS.
 
+## 17.1. Install Openshift Logging/ELK
+
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 25**
+
+Or just do:
 
 1. Launch
 
 	```bash
-	xxxx
+	./argocd/scritps/25-solutions-elk
 	```
+	
 2. Wait for the pods to come up
-3. Open Kibana
+3. You can get the URLs and access credentials by launching:
+
+	```bash
+	./tools/20_get_logins.sh > my_credentials.txt
+	```
+
+
+<div style="page-break-after: always;"></div>
+
+## 17.2 Verify installation
+
+Click on the `elk` Application Tile and check that `Sync Status` and `Sync Result` are OK
+
+![K8s CNI](./doc/pics/argo_ok.png)
+
 
 
 <div style="page-break-after: always;"></div>
@@ -2018,13 +2040,13 @@ Or just launch the following and this should automatically install:
 
 
 ```bash
-./argocd/22_addons_humio.sh -l <HUMIO_LICENSE>
+./argocd/scritps/22-solutions-humio.sh -l <HUMIO_LICENSE>
 ```
 
 Example:
 
 ```bash
-./argocd/22_addons_humio.sh -l eyJhbGciOiJFUzI1NiJyyyyyyyyyyyyyyyyyyyyQCtxzXF5wLjWCkcyOcbQ5mqU9yow_UoqtnWBOS_Z9DgLgIhALCMDC00HunDMk62S6GzDHIm9rYtZ0aWmdRTrr_kesMa
+./argocd/scritps/22-solutions-humio.sh -l eyJhbGciOiJFUzI1NiJyyyyyyyyyyyyyyyyyyyyQCtxzXF5wLjWCkcyOcbQ5mqU9yow_UoqtnWBOS_Z9DgLgIhALCMDC00HunDMk62S6GzDHIm9rYtZ0aWmdRTrr_kesMa
 ```
 
 
@@ -2210,26 +2232,41 @@ oc patch -n robot-shop service mysql -p '{"spec": {"selector": {"service": "mysq
 # 16. ServiceMesh
 ---------------------------------------------------------------
 
-#❗NOT WORKING YET
-
 
 
 You can easily install ServiceMesh/Istio into the same cluster as CP4WAIOPS.
 
 This will instrument the RobotShop Application at the same time.
 
+
+## 17.1. Install ServiceMesh/Istio
+
+> ℹ️ This can be done with the [Easy Install Tool](#0-easy-install) - **Option 24**
+
+Or just do:
+
 1. Launch
 
 	```bash
-	xxx	
+	./argocd/scritps/24-solutions-istio.sh
 	```
 	
 2. Wait for the pods to come up
-3. You can get the different URLs (RobotShop, Kibana, Grafana, Jaeger) by launching:
+3. You can get the URLs and access credentials by launching:
 
 	```bash
 	./tools/20_get_logins.sh > my_credentials.txt
 	```
+
+
+<div style="page-break-after: always;"></div>
+
+## 17.2 Verify installation
+
+Click on the `istio` Application Tile and check that `Sync Status` and `Sync Result` are OK
+
+![K8s CNI](./doc/pics/argo_ok.png)
+
 
 
 <div style="page-break-after: always;"></div>
@@ -2254,7 +2291,7 @@ Or just do:
 1. Launch
 
 	```bash
-	./argocd/23_addons_awx.sh	
+	./argocd/scritps/23-solutions-awx.sh	
 	```
 	
 2. Wait for the pods to come up

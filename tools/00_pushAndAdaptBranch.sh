@@ -56,7 +56,7 @@ cd ./argocd/applications/
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" *
 cd -
 
-gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3-installer.yaml
+gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3-argocd-installer.yaml
 
 export gitCommitMessage=$(date +%Y%m%d-%H%M)
 read -p " ❗❓ do you want to check-in the GitHub branch $actBranch with message $gitCommitMessage? [y,N] " DO_COMM

@@ -58,7 +58,7 @@ cd -
 
 gsed -i "s/targetRevision: .*/targetRevision: $actBranch/g" ./argocd/install/3-argocd-installer.yaml
 
-gsed -i "s/origin\/.*/origin\/$actBranch/g" ./tools/01_git_reset.sh
+gsed -i "s/origin\/.*/origin\/$actBranch/g" ./tools/40_git_reset.sh
 
 
 export gitCommitMessage=$(date +%Y%m%d-%H%M)
